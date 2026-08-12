@@ -19,10 +19,16 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+
     background: #050505;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
+
 
 /* =========================================================
    BACKGROUND
@@ -30,10 +36,11 @@ body {
 
 .background {
     position: fixed;
-    inset: -5%;
 
-    width: 110%;
-    height: 110%;
+    inset: -6%;
+
+    width: 112%;
+    height: 112%;
 
     background-image:
         linear-gradient(
@@ -48,42 +55,51 @@ body {
 
     z-index: 0;
 
-    animation: breathingBackground 20s ease-in-out infinite alternate;
+    animation:
+        backgroundZoom 24s
+        ease-in-out
+        infinite
+        alternate;
 }
 
-@keyframes breathingBackground {
+@keyframes backgroundZoom {
+
     0% {
         transform: scale(1);
     }
 
     50% {
-        transform: scale(1.045);
+        transform: scale(1.035);
     }
 
     100% {
-        transform: scale(1.09);
+        transform: scale(1.075);
     }
 }
 
+
 /* =========================================================
-   OVERLAY
+   DARK OVERLAY
 ========================================================= */
 
 .overlay {
     position: fixed;
+
     inset: 0;
+
     z-index: 1;
+
+    pointer-events: none;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,0.04),
-            transparent 45%,
-            rgba(0,0,0,0.30)
+            rgba(0,0,0,0.03) 0%,
+            rgba(0,0,0,0.02) 45%,
+            rgba(0,0,0,0.30) 100%
         );
-
-    pointer-events: none;
 }
+
 
 /* =========================================================
    TOP BAR
@@ -91,31 +107,43 @@ body {
 
 .topbar {
     position: fixed;
+
     top: 28px;
     left: 30px;
     right: 30px;
 
-    z-index: 20;
+    z-index: 30;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
     font-size: 16px;
     font-weight: 700;
 
     text-shadow:
-        0 2px 10px rgba(0,0,0,0.85);
+        0 2px 10px rgba(0,0,0,0.8);
 }
+
+.clock {
+    white-space: nowrap;
+}
+
 
 .online {
     position: absolute;
+
     left: 50%;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
 
     display: flex;
     align-items: center;
+
     gap: 9px;
+
+    white-space: nowrap;
 }
 
 .online-dot {
@@ -124,50 +152,64 @@ body {
 
     border-radius: 50%;
 
-    background: #59f38d;
+    background: #5df58e;
 
     box-shadow:
-        0 0 13px rgba(89,243,141,0.9);
+        0 0 14px
+        rgba(93,245,142,0.9);
 }
+
 
 .top-right {
     display: flex;
+
     align-items: center;
-    gap: 25px;
+
+    gap: 24px;
 }
+
 
 .top-link {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 
     cursor: pointer;
 
     opacity: 0.9;
 
-    transition: 0.2s;
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
 }
 
 .top-link:hover {
     opacity: 1;
+
+    transform:
+        translateY(-1px);
 }
 
+
 .icon-circle {
-    width: 26px;
-    height: 26px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.75);
-
-    border-radius: 50%;
+    width: 27px;
+    height: 27px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    border:
+        1px solid
+        rgba(255,255,255,0.7);
+
+    border-radius: 50%;
+
     font-size: 11px;
 }
+
 
 /* =========================================================
    CENTER LOGO
@@ -181,11 +223,11 @@ body {
     left: 50%;
     top: 48%;
 
+    width:
+        min(650px, 58vw);
+
     transform:
         translate(-50%, -50%);
-
-    width:
-        min(650px, 57vw);
 
     pointer-events: none;
 
@@ -197,65 +239,71 @@ body {
 }
 
 .logo img {
-    display: block;
     width: 100%;
     height: auto;
+
+    display: block;
 }
 
+
 /* =========================================================
-   COMPACT SIDE NAVIGATION
+   SIDE PREVIOUS / NEXT
 ========================================================= */
 
 .side-button {
     position: fixed;
 
     top: 50%;
-    transform: translateY(-50%);
 
-    z-index: 30;
+    z-index: 25;
 
     width: 48px;
     height: 48px;
 
-    border-radius: 50%;
+    transform:
+        translateY(-50%);
 
     border:
         1px solid
         rgba(255,255,255,0.20);
 
+    border-radius: 50%;
+
     background:
-        rgba(30,20,17,0.28);
+        rgba(25,20,18,0.30);
 
-    backdrop-filter: blur(8px);
+    backdrop-filter:
+        blur(8px);
 
-    color: white;
+    color: #fff;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 28px;
+    font-size: 29px;
     font-weight: 300;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        transform 0.10s ease,
+        background 0.10s ease;
 }
 
 .side-button:hover {
     background:
-        rgba(30,20,17,0.50);
-
-    border-color:
-        rgba(255,255,255,0.38);
+        rgba(25,20,18,0.55);
 
     transform:
-        translateY(-50%) scale(1.06);
+        translateY(-50%)
+        scale(1.05);
 }
 
 .side-button:active {
     transform:
-        translateY(-50%) scale(0.93);
+        translateY(-50%)
+        scale(0.88);
 }
 
 #previousSide {
@@ -266,8 +314,9 @@ body {
     right: 28px;
 }
 
+
 /* =========================================================
-   MAIN PLAYER
+   PLAYER
 ========================================================= */
 
 .player {
@@ -276,24 +325,26 @@ body {
     z-index: 50;
 
     left: 50%;
-    bottom: 58px;
+    bottom: 56px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width:
         min(760px, calc(100vw - 100px));
 
     height: 104px;
 
-    padding: 11px 13px;
+    padding:
+        11px 13px;
 
-    border-radius: 58px;
+    border-radius: 55px;
 
     background:
         linear-gradient(
             135deg,
             rgba(151,48,37,0.97),
-            rgba(104,28,22,0.97)
+            rgba(105,28,22,0.97)
         );
 
     box-shadow:
@@ -302,22 +353,24 @@ body {
 
         inset
         0 1px
-        rgba(255,255,255,0.18);
+        rgba(255,255,255,0.16);
 
     display: grid;
 
     grid-template-columns:
         70px
-        1fr
-        160px;
+        minmax(0, 1fr)
+        115px;
 
     grid-template-rows:
-        1fr 22px;
+        1fr
+        22px;
 
     column-gap: 14px;
 
     align-items: center;
 }
+
 
 /* =========================================================
    COVER
@@ -336,31 +389,39 @@ body {
     background: #210b08;
 
     box-shadow:
-        0 8px 24px
+        0 8px 25px
         rgba(0,0,0,0.45);
 }
 
 .cover img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
+    display: block;
 }
 
+
 /* =========================================================
-   SONG INFORMATION
+   SONG INFO
 ========================================================= */
 
 .song-info {
     min-width: 0;
+
     align-self: center;
 }
 
 .song-title {
     font-size: 18px;
+
     font-weight: 700;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
@@ -373,118 +434,125 @@ body {
         rgba(255,255,255,0.70);
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
+
 /* =========================================================
-   COMPACT SALOON-STYLE CONTROL PILL
+   SMALL SALOON STYLE CONTROL
 ========================================================= */
 
 .control-pill {
-    width: 145px;
-    height: 62px;
+    width: 112px;
+    height: 48px;
 
-    border-radius: 34px;
+    border-radius: 28px;
 
     background:
-        rgba(30,28,34,0.94);
+        rgba(31,29,35,0.96);
 
     border:
         1px solid
-        rgba(255,255,255,0.14);
+        rgba(255,255,255,0.12);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    gap: 15px;
+    gap: 8px;
+
+    flex-shrink: 0;
 
     box-shadow:
-        0 10px 30px
+        0 8px 22px
         rgba(0,0,0,0.25);
 }
 
-/* Previous / Next */
+
+/* PREVIOUS / NEXT */
 
 .control-small {
-    width: 24px;
-    height: 30px;
+    width: 22px;
+    height: 32px;
 
-    border: none;
+    padding: 0;
+
+    border: 0;
 
     background: transparent;
 
-    color: white;
+    color: #fff;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     cursor: pointer;
 
-    opacity: 0.85;
+    font-size: 15px;
 
-    font-size: 18px;
+    opacity: 0.82;
 
     transition:
-        transform 0.15s,
-        opacity 0.15s;
+        transform 0.08s ease,
+        opacity 0.08s ease;
 }
 
 .control-small:hover {
     opacity: 1;
-    transform: scale(1.12);
 }
 
 .control-small:active {
-    transform: scale(0.90);
+    transform: scale(0.82);
 }
 
+
 /* =========================================================
-   CENTRAL PLAY BUTTON
+   PLAY / PAUSE
 ========================================================= */
 
 .play-button {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
 
     border: none;
 
     border-radius: 50%;
 
-    background: white;
+    background: #fff;
 
-    color: #111;
+    color: #17151a;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    font-size: 19px;
-
     cursor: pointer;
 
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.25);
+    font-size: 16px;
+
+    flex-shrink: 0;
 
     transition:
-        transform 0.18s,
-        box-shadow 0.18s;
+        transform 0.08s ease;
 }
 
 .play-button:hover {
-    transform: scale(1.06);
-
-    box-shadow:
-        0 7px 20px
-        rgba(0,0,0,0.35);
+    transform: scale(1.04);
 }
 
 .play-button:active {
-    transform: scale(0.92);
+    transform: scale(0.88);
 }
+
 
 /* =========================================================
    PROGRESS
@@ -497,7 +565,7 @@ body {
 
     grid-template-columns:
         35px
-        1fr
+        minmax(0, 1fr)
         35px;
 
     gap: 8px;
@@ -518,6 +586,8 @@ body {
 
     appearance: none;
 
+    border: none;
+
     border-radius: 10px;
 
     background:
@@ -532,9 +602,13 @@ body {
     width: 9px;
     height: 9px;
 
+    border: none;
+
     border-radius: 50%;
 
-    background: white;
+    background: #fff;
+
+    cursor: pointer;
 }
 
 .progress::-moz-range-thumb {
@@ -545,40 +619,47 @@ body {
 
     border-radius: 50%;
 
-    background: white;
+    background: #fff;
+
+    cursor: pointer;
 }
 
+
 /* =========================================================
-   PLAYLIST BUTTON
+   PLAYLIST MENU BUTTON
 ========================================================= */
 
 .menu-button {
     position: absolute;
 
-    right: -54px;
-    top: 50%;
+    right: -53px;
 
-    transform: translateY(-50%);
+    top: 50%;
 
     width: 42px;
     height: 42px;
 
-    border-radius: 50%;
+    transform:
+        translateY(-50%);
 
     border:
         1px solid
         rgba(255,255,255,0.22);
 
-    background:
-        rgba(20,15,13,0.28);
+    border-radius: 50%;
 
-    color: white;
+    background:
+        rgba(20,15,13,0.30);
+
+    color: #fff;
 
     font-size: 17px;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        transform 0.1s ease,
+        background 0.1s ease;
 }
 
 .menu-button:hover {
@@ -586,8 +667,10 @@ body {
         rgba(20,15,13,0.55);
 
     transform:
-        translateY(-50%) scale(1.05);
+        translateY(-50%)
+        scale(1.05);
 }
+
 
 /* =========================================================
    PLAYLIST PANEL
@@ -599,24 +682,25 @@ body {
     z-index: 45;
 
     right: 35px;
-    bottom: 180px;
+
+    bottom: 178px;
 
     width: 360px;
 
-    max-height: 400px;
+    max-height: 390px;
 
     overflow-y: auto;
 
-    padding: 20px;
+    padding: 21px;
 
     border-radius: 20px;
 
     background:
-        rgba(19,14,12,0.94);
+        rgba(18,14,12,0.94);
 
     border:
         1px solid
-        rgba(255,255,255,0.14);
+        rgba(255,255,255,0.13);
 
     backdrop-filter:
         blur(18px);
@@ -626,21 +710,25 @@ body {
         rgba(0,0,0,0.60);
 
     opacity: 0;
+
     visibility: hidden;
 
-    transform: translateY(15px);
+    transform:
+        translateY(12px);
 
     transition:
-        opacity 0.25s,
-        transform 0.25s,
-        visibility 0.25s;
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
 }
 
 .playlist-panel.open {
     opacity: 1;
+
     visibility: visible;
 
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 .playlist-title {
@@ -651,7 +739,7 @@ body {
     color:
         rgba(255,255,255,0.55);
 
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 }
 
 .playlist-info {
@@ -660,8 +748,9 @@ body {
     line-height: 1.7;
 
     color:
-        rgba(255,255,255,0.62);
+        rgba(255,255,255,0.65);
 }
+
 
 /* =========================================================
    STATUS
@@ -684,7 +773,7 @@ body {
     border-radius: 30px;
 
     background:
-        rgba(0,0,0,0.58);
+        rgba(0,0,0,0.60);
 
     backdrop-filter:
         blur(10px);
@@ -696,12 +785,13 @@ body {
     pointer-events: none;
 
     transition:
-        opacity 0.25s;
+        opacity 0.15s ease;
 }
 
 .status.show {
     opacity: 1;
 }
+
 
 /* =========================================================
    HIDDEN YOUTUBE PLAYER
@@ -721,6 +811,7 @@ body {
     pointer-events: none;
 }
 
+
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -731,7 +822,8 @@ body {
     z-index: 100;
 
     left: 50%;
-    bottom: 12px;
+
+    bottom: 11px;
 
     transform:
         translateX(-50%);
@@ -747,6 +839,7 @@ body {
         0 2px 10px
         rgba(0,0,0,0.9);
 }
+
 
 /* =========================================================
    MOBILE
@@ -784,11 +877,11 @@ body {
     }
 
     #previousSide {
-        left: 10px;
+        left: 9px;
     }
 
     #nextSide {
-        right: 10px;
+        right: 9px;
     }
 
     .player {
@@ -797,14 +890,14 @@ body {
 
         height: 90px;
 
-        bottom: 36px;
+        bottom: 35px;
 
         grid-template-columns:
             58px
-            1fr
-            125px;
+            minmax(0, 1fr)
+            112px;
 
-        column-gap: 10px;
+        column-gap: 9px;
 
         border-radius: 50px;
     }
@@ -823,21 +916,21 @@ body {
     }
 
     .control-pill {
-        width: 115px;
-        height: 50px;
+        width: 108px;
+        height: 45px;
 
-        gap: 9px;
+        gap: 6px;
     }
 
     .play-button {
-        width: 38px;
-        height: 38px;
+        width: 37px;
+        height: 37px;
 
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .control-small {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .menu-button {
@@ -858,6 +951,7 @@ body {
     }
 }
 
+
 /* =========================================================
    REDUCED MOTION
 ========================================================= */
@@ -872,13 +966,16 @@ body {
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      BACKGROUND
 ===================================================== -->
 
 <div class="background"></div>
+
 <div class="overlay"></div>
 
 
@@ -888,9 +985,12 @@ body {
 
 <div class="topbar">
 
-    <div id="clock">
+    <div
+        class="clock"
+        id="clock">
         11:13 am
     </div>
+
 
     <div class="online">
 
@@ -901,6 +1001,7 @@ body {
         </span>
 
     </div>
+
 
     <div class="top-right">
 
@@ -915,6 +1016,7 @@ body {
             Spotify
 
         </div>
+
 
         <div
             class="top-link"
@@ -934,7 +1036,7 @@ body {
 
 
 <!-- =====================================================
-     LOGO
+     CENTER LOGO
 ===================================================== -->
 
 <div class="logo">
@@ -947,13 +1049,13 @@ body {
 
 
 <!-- =====================================================
-     SIDE BUTTONS
+     SIDE NAVIGATION
 ===================================================== -->
 
 <button
     class="side-button"
     id="previousSide"
-    aria-label="Previous">
+    aria-label="Previous song">
 
     ‹
 
@@ -963,7 +1065,7 @@ body {
 <button
     class="side-button"
     id="nextSide"
-    aria-label="Next">
+    aria-label="Next song">
 
     ›
 
@@ -984,13 +1086,18 @@ body {
 
     <div class="playlist-info">
 
-        The player is connected directly
-        to your YouTube playlist.
+        You are listening to the
+        Sidhu Moosewala playlist.
 
         <br><br>
 
-        Use the compact controls to play,
-        pause, or move between songs.
+        Use the player controls to
+        switch between songs.
+
+        <br><br>
+
+        Previous and Next use the
+        YouTube playlist directly.
 
     </div>
 
@@ -998,7 +1105,7 @@ body {
 
 
 <!-- =====================================================
-     MUSIC PLAYER
+     PLAYER
 ===================================================== -->
 
 <div class="player">
@@ -1016,7 +1123,7 @@ body {
     </div>
 
 
-    <!-- SONG INFO -->
+    <!-- SONG INFORMATION -->
 
     <div class="song-info">
 
@@ -1024,7 +1131,7 @@ body {
             class="song-title"
             id="songTitle">
 
-            Sidhu Moosewala
+            Sidhu Moosewala Playlist
 
         </div>
 
@@ -1032,7 +1139,7 @@ body {
             class="song-artist"
             id="songArtist">
 
-            Playlist
+            Sidhu Moosewala
 
         </div>
 
@@ -1040,7 +1147,7 @@ body {
 
 
     <!-- =================================================
-         COMPACT CONTROL PILL
+         SMALL CONTROL PILL
     ================================================== -->
 
     <div class="control-pill">
@@ -1081,11 +1188,12 @@ body {
 
         </button>
 
+
     </div>
 
 
     <!-- =================================================
-         PROGRESS
+         PROGRESS BAR
     ================================================== -->
 
     <div class="progress-area">
@@ -1098,13 +1206,16 @@ body {
 
         </span>
 
+
         <input
             class="progress"
             id="progress"
             type="range"
             min="0"
             max="100"
-            value="0">
+            value="0"
+            aria-label="Song progress">
+
 
         <span
             class="time"
@@ -1117,7 +1228,7 @@ body {
     </div>
 
 
-    <!-- MENU -->
+    <!-- PLAYLIST MENU -->
 
     <button
         class="menu-button"
@@ -1127,6 +1238,7 @@ body {
         ☰
 
     </button>
+
 
 </div>
 
@@ -1142,7 +1254,7 @@ body {
 
 
 <!-- =====================================================
-     FOOTER
+     SIGNATURE
 ===================================================== -->
 
 <div class="signature">
@@ -1153,7 +1265,7 @@ body {
 
 
 <!-- =====================================================
-     HIDDEN YOUTUBE PLAYER
+     YOUTUBE PLAYER
 ===================================================== -->
 
 <div id="youtube-player"></div>
@@ -1161,17 +1273,17 @@ body {
 
 <script>
 
-/* =====================================================
-   YOUR PLAYLIST
-===================================================== */
+/* =========================================================
+   PLAYLIST
+========================================================= */
 
 const PLAYLIST_ID =
     "PL61b1x9YzrKU-5RwcdWd3ygy2-4Aiznjg";
 
 
-/* =====================================================
+/* =========================================================
    PLAYER VARIABLES
-===================================================== */
+========================================================= */
 
 let player = null;
 
@@ -1182,9 +1294,9 @@ let isPlaying = false;
 let statusTimer = null;
 
 
-/* =====================================================
+/* =========================================================
    ELEMENTS
-===================================================== */
+========================================================= */
 
 const playButton =
     document.getElementById(
@@ -1252,13 +1364,14 @@ const playlistPanel =
     );
 
 
-/* =====================================================
+/* =========================================================
    CLOCK
-===================================================== */
+========================================================= */
 
 function updateClock() {
 
-    const now = new Date();
+    const now =
+        new Date();
 
     let hours =
         now.getHours();
@@ -1266,7 +1379,10 @@ function updateClock() {
     const minutes =
         String(
             now.getMinutes()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
     const period =
         hours >= 12
@@ -1291,9 +1407,9 @@ setInterval(
 );
 
 
-/* =====================================================
-   STATUS
-===================================================== */
+/* =========================================================
+   STATUS MESSAGE
+========================================================= */
 
 function showStatus(message) {
 
@@ -1310,25 +1426,25 @@ function showStatus(message) {
 
     statusTimer =
         setTimeout(
-            function () {
+            function() {
 
                 status.classList.remove(
                     "show"
                 );
 
             },
-            2200
+            1800
         );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    YOUTUBE API
-===================================================== */
+========================================================= */
 
 window.onYouTubeIframeAPIReady =
-function () {
+function() {
 
     player =
         new YT.Player(
@@ -1336,6 +1452,7 @@ function () {
             {
 
                 width: "320",
+
                 height: "180",
 
                 playerVars: {
@@ -1347,6 +1464,8 @@ function () {
                     playsinline: 1,
 
                     rel: 0,
+
+                    modestbranding: 1,
 
                     listType:
                         "playlist",
@@ -1382,9 +1501,9 @@ function () {
 };
 
 
-/* =====================================================
+/* =========================================================
    PLAYER READY
-===================================================== */
+========================================================= */
 
 function onPlayerReady() {
 
@@ -1408,26 +1527,18 @@ function onPlayerReady() {
 
     catch(error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
     }
-
-    songTitle.textContent =
-        "Sidhu Moosewala";
-
-    songArtist.textContent =
-        "Playlist ready";
-
-    showStatus(
-        "Playlist ready"
-    );
 
 }
 
 
-/* =====================================================
-   STATE CHANGE
-===================================================== */
+/* =========================================================
+   PLAYER STATE
+========================================================= */
 
 function onPlayerStateChange(event) {
 
@@ -1445,6 +1556,7 @@ function onPlayerStateChange(event) {
 
     }
 
+
     else if (
         event.data ===
         YT.PlayerState.PAUSED
@@ -1456,6 +1568,7 @@ function onPlayerStateChange(event) {
             "▶";
 
     }
+
 
     else if (
         event.data ===
@@ -1469,6 +1582,7 @@ function onPlayerStateChange(event) {
 
     }
 
+
     else if (
         event.data ===
         YT.PlayerState.CUED
@@ -1481,9 +1595,9 @@ function onPlayerStateChange(event) {
 }
 
 
-/* =====================================================
-   ERROR
-===================================================== */
+/* =========================================================
+   YOUTUBE ERROR
+========================================================= */
 
 function onPlayerError(event) {
 
@@ -1495,48 +1609,69 @@ function onPlayerError(event) {
     let message =
         "YouTube playback error";
 
+
     if (event.data === 2) {
+
         message =
             "Invalid YouTube request";
+
     }
+
 
     if (event.data === 5) {
+
         message =
             "HTML5 player error";
+
     }
 
+
     if (event.data === 100) {
+
         message =
             "Video unavailable";
+
     }
+
 
     if (
         event.data === 101 ||
         event.data === 150
     ) {
+
         message =
             "Video cannot be embedded";
+
     }
+
 
     if (event.data === 153) {
+
         message =
             "YouTube rejected the player request";
+
     }
 
-    showStatus(message);
+
+    showStatus(
+        message
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    PLAY / PAUSE
-===================================================== */
+========================================================= */
 
 playButton.addEventListener(
     "click",
-    function () {
+    function() {
 
-        if (!playerReady) {
+        if (
+            !playerReady ||
+            !player
+        ) {
 
             showStatus(
                 "YouTube is loading..."
@@ -1546,13 +1681,32 @@ playButton.addEventListener(
 
         }
 
+
         if (isPlaying) {
+
+            /*
+             * Update UI immediately.
+             */
+
+            isPlaying = false;
+
+            playButton.textContent =
+                "▶";
 
             player.pauseVideo();
 
         }
 
         else {
+
+            /*
+             * Update UI immediately.
+             */
+
+            isPlaying = true;
+
+            playButton.textContent =
+                "Ⅱ";
 
             player.playVideo();
 
@@ -1562,21 +1716,44 @@ playButton.addEventListener(
 );
 
 
-/* =====================================================
+/* =========================================================
    PREVIOUS
-===================================================== */
+========================================================= */
 
 function previousSong() {
 
-    if (!playerReady) {
+    if (
+        !playerReady ||
+        !player
+    ) {
 
         showStatus(
-            "Playlist is loading..."
+            "YouTube is loading..."
         );
 
         return;
 
     }
+
+
+    /*
+     * Instant button feedback.
+     */
+
+    previousButton.style.transform =
+        "scale(0.82)";
+
+
+    setTimeout(
+        function() {
+
+            previousButton.style.transform =
+                "";
+
+        },
+        80
+    );
+
 
     try {
 
@@ -1586,28 +1763,54 @@ function previousSong() {
 
     catch(error) {
 
-        console.error(error);
+        console.error(
+            "Previous error:",
+            error
+        );
 
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    NEXT
-===================================================== */
+========================================================= */
 
 function nextSong() {
 
-    if (!playerReady) {
+    if (
+        !playerReady ||
+        !player
+    ) {
 
         showStatus(
-            "Playlist is loading..."
+            "YouTube is loading..."
         );
 
         return;
 
     }
+
+
+    /*
+     * Instant button feedback.
+     */
+
+    nextButton.style.transform =
+        "scale(0.82)";
+
+
+    setTimeout(
+        function() {
+
+            nextButton.style.transform =
+                "";
+
+        },
+        80
+    );
+
 
     try {
 
@@ -1617,14 +1820,19 @@ function nextSong() {
 
     catch(error) {
 
-        console.error(error);
+        console.error(
+            "Next error:",
+            error
+        );
 
     }
 
 }
 
 
-/* COMPACT BUTTONS */
+/* =========================================================
+   PLAYER CONTROLS
+========================================================= */
 
 previousButton.addEventListener(
     "click",
@@ -1637,7 +1845,9 @@ nextButton.addEventListener(
 );
 
 
-/* SIDE BUTTONS */
+/* =========================================================
+   SIDE CONTROLS
+========================================================= */
 
 previousSide.addEventListener(
     "click",
@@ -1650,19 +1860,21 @@ nextSide.addEventListener(
 );
 
 
-/* =====================================================
-   SONG INFO
-===================================================== */
+/* =========================================================
+   SONG INFORMATION
+========================================================= */
 
 function updateSongInfo() {
 
     if (!playerReady)
         return;
 
+
     try {
 
         const data =
             player.getVideoData();
+
 
         if (
             data &&
@@ -1674,6 +1886,7 @@ function updateSongInfo() {
 
         }
 
+
         if (
             data &&
             data.author
@@ -1683,6 +1896,7 @@ function updateSongInfo() {
                 data.author;
 
         }
+
 
         if (
             data &&
@@ -1701,7 +1915,7 @@ function updateSongInfo() {
     catch(error) {
 
         console.log(
-            "Waiting for song metadata..."
+            "Song metadata not ready."
         );
 
     }
@@ -1709,14 +1923,18 @@ function updateSongInfo() {
 }
 
 
-/* =====================================================
-   PROGRESS
-===================================================== */
+/* =========================================================
+   PROGRESS UPDATE
+========================================================= */
 
 function updateProgress() {
 
-    if (!playerReady)
+    if (
+        !playerReady ||
+        !player
+    )
         return;
+
 
     try {
 
@@ -1725,6 +1943,7 @@ function updateProgress() {
 
         const current =
             player.getCurrentTime();
+
 
         if (
             total &&
@@ -1737,11 +1956,17 @@ function updateProgress() {
                     total
                 ) * 100;
 
+
             currentTime.textContent =
-                formatTime(current);
+                formatTime(
+                    current
+                );
+
 
             duration.textContent =
-                formatTime(total);
+                formatTime(
+                    total
+                );
 
         }
 
@@ -1749,11 +1974,12 @@ function updateProgress() {
 
     catch(error) {
 
-        // Metadata not ready yet.
+        // Player metadata may not be ready.
 
     }
 
 }
+
 
 setInterval(
     updateProgress,
@@ -1761,42 +1987,61 @@ setInterval(
 );
 
 
-/* =====================================================
+/* =========================================================
    SEEK
-===================================================== */
+========================================================= */
 
 progress.addEventListener(
     "input",
-    function () {
+    function() {
 
-        if (!playerReady)
+        if (
+            !playerReady ||
+            !player
+        )
             return;
 
-        const total =
-            player.getDuration();
 
-        if (!total)
-            return;
+        try {
 
-        const target =
-            (
-                Number(
-                    progress.value
-                ) / 100
-            ) * total;
+            const total =
+                player.getDuration();
 
-        player.seekTo(
-            target,
-            true
-        );
+
+            if (!total)
+                return;
+
+
+            const target =
+                (
+                    Number(
+                        progress.value
+                    ) / 100
+                ) * total;
+
+
+            player.seekTo(
+                target,
+                true
+            );
+
+        }
+
+        catch(error) {
+
+            console.error(
+                error
+            );
+
+        }
 
     }
 );
 
 
-/* =====================================================
+/* =========================================================
    TIME FORMAT
-===================================================== */
+========================================================= */
 
 function formatTime(seconds) {
 
@@ -1805,10 +2050,12 @@ function formatTime(seconds) {
             Number(seconds) || 0
         );
 
+
     const minutes =
         Math.floor(
             seconds / 60
         );
+
 
     const remaining =
         String(
@@ -1817,6 +2064,7 @@ function formatTime(seconds) {
             2,
             "0"
         );
+
 
     return (
         minutes +
@@ -1827,70 +2075,90 @@ function formatTime(seconds) {
 }
 
 
-/* =====================================================
-   PLAYLIST PANEL
-===================================================== */
+/* =========================================================
+   PLAYLIST MENU
+========================================================= */
 
 document
-.getElementById("menuButton")
-.addEventListener(
-    "click",
-    function () {
+    .getElementById(
+        "menuButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-        playlistPanel.classList.toggle(
-            "open"
-        );
+            playlistPanel.classList.toggle(
+                "open"
+            );
 
-    }
-);
+        }
+    );
 
 
-/* =====================================================
+/* =========================================================
    YOUTUBE MUSIC
-===================================================== */
+========================================================= */
 
 document
-.getElementById("ytMusicButton")
-.addEventListener(
-    "click",
-    function () {
+    .getElementById(
+        "ytMusicButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-        window.open(
-            "https://music.youtube.com/playlist?list=" +
-            PLAYLIST_ID,
-            "_blank"
-        );
+            window.open(
+                "https://music.youtube.com/playlist?list=" +
+                PLAYLIST_ID,
+                "_blank"
+            );
 
-    }
-);
+        }
+    );
 
 
-/* =====================================================
+/* =========================================================
    SPOTIFY
-===================================================== */
+========================================================= */
 
 document
-.getElementById("spotifyButton")
-.addEventListener(
-    "click",
-    function () {
+    .getElementById(
+        "spotifyButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-        window.open(
-            "https://open.spotify.com/search/Sidhu%20Moosewala",
-            "_blank"
-        );
+            window.open(
+                "https://open.spotify.com/search/Sidhu%20Moosewala",
+                "_blank"
+            );
 
-    }
-);
+        }
+    );
 
 
-/* =====================================================
+/* =========================================================
    KEYBOARD
-===================================================== */
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
+
+
+        /*
+         * Don't hijack keyboard when
+         * user is using an input.
+         */
+
+        if (
+            event.target.tagName ===
+            "INPUT"
+        ) {
+            return;
+        }
+
 
         if (
             event.code ===
@@ -1903,6 +2171,7 @@ document.addEventListener(
 
         }
 
+
         if (
             event.key ===
             "ArrowLeft"
@@ -1911,6 +2180,7 @@ document.addEventListener(
             previousSong();
 
         }
+
 
         if (
             event.key ===
@@ -1925,9 +2195,9 @@ document.addEventListener(
 );
 
 
-/* =====================================================
+/* =========================================================
    LOAD YOUTUBE IFRAME API
-===================================================== */
+========================================================= */
 
 const youtubeScript =
     document.createElement(
