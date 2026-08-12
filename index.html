@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>अटल जिम</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
     margin: 0;
     padding: 0;
@@ -23,34 +19,26 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-
     background: #050505;
-
     color: white;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-
-/* =====================================================
+/* =========================================================
    BACKGROUND
-===================================================== */
+========================================================= */
 
 .background {
     position: fixed;
+    inset: -5%;
 
-    inset: -4%;
-
-    width: 108%;
-    height: 108%;
+    width: 110%;
+    height: 110%;
 
     background-image:
         linear-gradient(
             rgba(0,0,0,0.08),
-            rgba(0,0,0,0.22)
+            rgba(0,0,0,0.25)
         ),
         url("assets/gym-sidhu.png");
 
@@ -60,21 +48,10 @@ body {
 
     z-index: 0;
 
-    animation:
-        slowZoom
-        18s
-        ease-in-out
-        infinite
-        alternate;
+    animation: breathingBackground 20s ease-in-out infinite alternate;
 }
 
-
-/* =====================================================
-   SLOW BACKGROUND ZOOM
-===================================================== */
-
-@keyframes slowZoom {
-
+@keyframes breathingBackground {
     0% {
         transform: scale(1);
     }
@@ -86,42 +63,34 @@ body {
     100% {
         transform: scale(1.09);
     }
-
 }
 
-
-/* =====================================================
-   DARK OVERLAY
-===================================================== */
+/* =========================================================
+   OVERLAY
+========================================================= */
 
 .overlay {
-
     position: fixed;
-
     inset: 0;
-
     z-index: 1;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,0.05),
+            rgba(0,0,0,0.04),
             transparent 45%,
-            rgba(0,0,0,0.28)
+            rgba(0,0,0,0.30)
         );
 
     pointer-events: none;
 }
 
-
-/* =====================================================
+/* =========================================================
    TOP BAR
-===================================================== */
+========================================================= */
 
 .topbar {
-
     position: fixed;
-
     top: 28px;
     left: 30px;
     right: 30px;
@@ -129,92 +98,61 @@ body {
     z-index: 20;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     font-size: 16px;
-
     font-weight: 700;
 
     text-shadow:
-        0 2px 10px rgba(0,0,0,0.8);
+        0 2px 10px rgba(0,0,0,0.85);
 }
 
-
-/* =====================================================
-   ONLINE
-===================================================== */
-
 .online {
-
     position: absolute;
-
     left: 50%;
-
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     display: flex;
-
     align-items: center;
-
     gap: 9px;
 }
 
 .online-dot {
-
     width: 11px;
     height: 11px;
 
     border-radius: 50%;
 
-    background: #5cff91;
+    background: #59f38d;
 
     box-shadow:
-        0 0 12px
-        rgba(92,255,145,0.9);
+        0 0 13px rgba(89,243,141,0.9);
 }
 
-
-/* =====================================================
-   TOP RIGHT
-===================================================== */
-
 .top-right {
-
     display: flex;
-
     align-items: center;
-
     gap: 25px;
 }
 
 .top-link {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
 
     cursor: pointer;
 
-    opacity: 0.92;
+    opacity: 0.9;
 
     transition: 0.2s;
 }
 
 .top-link:hover {
-
     opacity: 1;
-
-    transform: translateY(-1px);
 }
 
 .icon-circle {
-
     width: 26px;
     height: 26px;
 
@@ -225,21 +163,17 @@ body {
     border-radius: 50%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     font-size: 11px;
 }
 
-
-/* =====================================================
+/* =========================================================
    CENTER LOGO
-===================================================== */
+========================================================= */
 
 .logo {
-
     position: fixed;
 
     z-index: 10;
@@ -257,33 +191,26 @@ body {
 
     filter:
         drop-shadow(
-            0 10px 25px
+            0 12px 25px
             rgba(0,0,0,0.35)
         );
 }
 
 .logo img {
-
-    width: 100%;
-
-    height: auto;
-
     display: block;
+    width: 100%;
+    height: auto;
 }
 
+/* =========================================================
+   COMPACT SIDE NAVIGATION
+========================================================= */
 
-/* =====================================================
-   PREVIOUS / NEXT BUTTONS
-===================================================== */
-
-.nav-button {
-
+.side-button {
     position: fixed;
 
     top: 50%;
-
-    transform:
-        translateY(-50%);
+    transform: translateY(-50%);
 
     z-index: 30;
 
@@ -294,104 +221,84 @@ body {
 
     border:
         1px solid
-        rgba(255,255,255,0.22);
+        rgba(255,255,255,0.20);
 
     background:
-        rgba(30,20,17,0.30);
+        rgba(30,20,17,0.28);
 
-    backdrop-filter:
-        blur(8px);
+    backdrop-filter: blur(8px);
 
     color: white;
 
-    font-size: 28px;
-
-    font-weight: 300;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
+
+    font-size: 28px;
+    font-weight: 300;
 
     cursor: pointer;
 
-    transition:
-        background 0.2s,
-        transform 0.2s,
-        border 0.2s;
+    transition: 0.2s;
 }
 
-.nav-button:hover {
-
+.side-button:hover {
     background:
-        rgba(30,20,17,0.55);
+        rgba(30,20,17,0.50);
 
     border-color:
-        rgba(255,255,255,0.40);
+        rgba(255,255,255,0.38);
 
     transform:
-        translateY(-50%)
-        scale(1.06);
+        translateY(-50%) scale(1.06);
 }
 
-.nav-button:active {
-
+.side-button:active {
     transform:
-        translateY(-50%)
-        scale(0.94);
+        translateY(-50%) scale(0.93);
 }
 
-
-#previous {
-
+#previousSide {
     left: 28px;
 }
 
-
-#next {
-
+#nextSide {
     right: 28px;
 }
 
-
-/* =====================================================
-   MUSIC PLAYER
-===================================================== */
+/* =========================================================
+   MAIN PLAYER
+========================================================= */
 
 .player {
-
     position: fixed;
-
-    left: 50%;
-
-    bottom: 62px;
-
-    transform:
-        translateX(-50%);
 
     z-index: 50;
 
+    left: 50%;
+    bottom: 58px;
+
+    transform: translateX(-50%);
+
     width:
-        min(760px, calc(100vw - 110px));
+        min(760px, calc(100vw - 100px));
 
-    height: 105px;
+    height: 104px;
 
-    padding:
-        11px 14px;
+    padding: 11px 13px;
 
     border-radius: 58px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(153,49,38,0.96),
-            rgba(108,29,23,0.96)
+            rgba(151,48,37,0.97),
+            rgba(104,28,22,0.97)
         );
 
     box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.50),
+        0 25px 65px
+        rgba(0,0,0,0.55),
 
         inset
         0 1px
@@ -402,26 +309,25 @@ body {
     grid-template-columns:
         70px
         1fr
-        48px;
+        160px;
 
     grid-template-rows:
-        1fr
-        20px;
+        1fr 22px;
 
     column-gap: 14px;
 
     align-items: center;
 }
 
-
-/* =====================================================
+/* =========================================================
    COVER
-===================================================== */
+========================================================= */
 
 .cover {
-
     width: 70px;
     height: 70px;
+
+    grid-row: 1 / 3;
 
     border-radius: 50%;
 
@@ -429,50 +335,37 @@ body {
 
     background: #210b08;
 
-    grid-row:
-        1 / 3;
-
     box-shadow:
-        0 7px 22px
-        rgba(0,0,0,0.40);
+        0 8px 24px
+        rgba(0,0,0,0.45);
 }
 
 .cover img {
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
 }
 
-
-/* =====================================================
-   SONG INFO
-===================================================== */
+/* =========================================================
+   SONG INFORMATION
+========================================================= */
 
 .song-info {
-
     min-width: 0;
-
     align-self: center;
 }
 
 .song-title {
-
     font-size: 18px;
-
     font-weight: 700;
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
 .song-artist {
-
-    margin-top: 4px;
+    margin-top: 5px;
 
     font-size: 13px;
 
@@ -480,81 +373,139 @@ body {
         rgba(255,255,255,0.70);
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
+/* =========================================================
+   COMPACT SALOON-STYLE CONTROL PILL
+========================================================= */
 
-/* =====================================================
-   SMALL PLAY / PAUSE BUTTON
-===================================================== */
+.control-pill {
+    width: 145px;
+    height: 62px;
 
-.play-button {
+    border-radius: 34px;
 
-    width: 44px;
-    height: 44px;
+    background:
+        rgba(30,28,34,0.94);
 
-    border-radius: 50%;
+    border:
+        1px solid
+        rgba(255,255,255,0.14);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.25);
+}
+
+/* Previous / Next */
+
+.control-small {
+    width: 24px;
+    height: 30px;
 
     border: none;
+
+    background: transparent;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    opacity: 0.85;
+
+    font-size: 18px;
+
+    transition:
+        transform 0.15s,
+        opacity 0.15s;
+}
+
+.control-small:hover {
+    opacity: 1;
+    transform: scale(1.12);
+}
+
+.control-small:active {
+    transform: scale(0.90);
+}
+
+/* =========================================================
+   CENTRAL PLAY BUTTON
+========================================================= */
+
+.play-button {
+    width: 46px;
+    height: 46px;
+
+    border: none;
+
+    border-radius: 50%;
 
     background: white;
 
     color: #111;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    font-size: 18px;
+    font-size: 19px;
 
     cursor: pointer;
 
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,0.25);
+
     transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+        transform 0.18s,
+        box-shadow 0.18s;
 }
 
 .play-button:hover {
-
     transform: scale(1.06);
 
     box-shadow:
-        0 5px 20px
-        rgba(0,0,0,0.25);
+        0 7px 20px
+        rgba(0,0,0,0.35);
 }
 
 .play-button:active {
-
-    transform: scale(0.94);
+    transform: scale(0.92);
 }
 
-
-/* =====================================================
+/* =========================================================
    PROGRESS
-===================================================== */
+========================================================= */
 
 .progress-area {
-
-    grid-column:
-        2 / 4;
+    grid-column: 2 / 4;
 
     display: grid;
 
     grid-template-columns:
-        35px 1fr 35px;
-
-    align-items: center;
+        35px
+        1fr
+        35px;
 
     gap: 8px;
+
+    align-items: center;
 }
 
 .time {
-
     font-size: 10px;
 
     color:
@@ -562,14 +513,12 @@ body {
 }
 
 .progress {
-
     width: 100%;
-
     height: 4px;
 
     appearance: none;
 
-    border-radius: 20px;
+    border-radius: 10px;
 
     background:
         rgba(255,255,255,0.30);
@@ -578,7 +527,6 @@ body {
 }
 
 .progress::-webkit-slider-thumb {
-
     appearance: none;
 
     width: 9px;
@@ -590,7 +538,6 @@ body {
 }
 
 .progress::-moz-range-thumb {
-
     width: 9px;
     height: 9px;
 
@@ -601,21 +548,17 @@ body {
     background: white;
 }
 
-
-/* =====================================================
+/* =========================================================
    PLAYLIST BUTTON
-===================================================== */
+========================================================= */
 
 .menu-button {
-
     position: absolute;
 
     right: -54px;
-
     top: 50%;
 
-    transform:
-        translateY(-50%);
+    transform: translateY(-50%);
 
     width: 42px;
     height: 42px;
@@ -627,11 +570,11 @@ body {
         rgba(255,255,255,0.22);
 
     background:
-        rgba(20,15,13,0.25);
+        rgba(20,15,13,0.28);
 
     color: white;
 
-    font-size: 18px;
+    font-size: 17px;
 
     cursor: pointer;
 
@@ -639,35 +582,30 @@ body {
 }
 
 .menu-button:hover {
-
     background:
-        rgba(20,15,13,0.50);
+        rgba(20,15,13,0.55);
 
     transform:
-        translateY(-50%)
-        scale(1.05);
+        translateY(-50%) scale(1.05);
 }
 
-
-/* =====================================================
+/* =========================================================
    PLAYLIST PANEL
-===================================================== */
+========================================================= */
 
 .playlist-panel {
-
     position: fixed;
 
-    right: 35px;
+    z-index: 45;
 
-    bottom: 185px;
+    right: 35px;
+    bottom: 180px;
 
     width: 360px;
 
     max-height: 400px;
 
     overflow-y: auto;
-
-    z-index: 45;
 
     padding: 20px;
 
@@ -678,21 +616,19 @@ body {
 
     border:
         1px solid
-        rgba(255,255,255,0.13);
+        rgba(255,255,255,0.14);
 
     backdrop-filter:
         blur(18px);
 
     box-shadow:
         0 25px 70px
-        rgba(0,0,0,0.55);
+        rgba(0,0,0,0.60);
 
     opacity: 0;
-
     visibility: hidden;
 
-    transform:
-        translateY(12px);
+    transform: translateY(15px);
 
     transition:
         opacity 0.25s,
@@ -701,17 +637,13 @@ body {
 }
 
 .playlist-panel.open {
-
     opacity: 1;
-
     visibility: visible;
 
-    transform:
-        translateY(0);
+    transform: translateY(0);
 }
 
 .playlist-title {
-
     font-size: 12px;
 
     letter-spacing: 0.14em;
@@ -723,26 +655,22 @@ body {
 }
 
 .playlist-info {
-
     font-size: 12px;
 
-    line-height: 1.6;
+    line-height: 1.7;
 
     color:
         rgba(255,255,255,0.62);
 }
 
-
-/* =====================================================
+/* =========================================================
    STATUS
-===================================================== */
+========================================================= */
 
 .status {
-
     position: fixed;
 
     left: 50%;
-
     top: 72%;
 
     transform:
@@ -756,7 +684,7 @@ body {
     border-radius: 30px;
 
     background:
-        rgba(0,0,0,0.55);
+        rgba(0,0,0,0.58);
 
     backdrop-filter:
         blur(10px);
@@ -772,47 +700,41 @@ body {
 }
 
 .status.show {
-
     opacity: 1;
 }
 
-
-/* =====================================================
+/* =========================================================
    HIDDEN YOUTUBE PLAYER
-===================================================== */
+========================================================= */
 
 #youtube-player {
-
     position: fixed;
 
     left: -1000px;
     top: -1000px;
 
     width: 320px;
-    height: 200px;
+    height: 180px;
 
     opacity: 0;
 
     pointer-events: none;
 }
 
-
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 .signature {
-
     position: fixed;
 
-    left: 50%;
+    z-index: 100;
 
-    bottom: 13px;
+    left: 50%;
+    bottom: 12px;
 
     transform:
         translateX(-50%);
-
-    z-index: 100;
 
     font-size: 11px;
 
@@ -826,150 +748,137 @@ body {
         rgba(0,0,0,0.9);
 }
 
-
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media(max-width: 800px) {
 
     .topbar {
-
         top: 15px;
-
         left: 15px;
-
         right: 15px;
     }
 
     .online {
-
         display: none;
     }
 
     .top-right {
-
         gap: 10px;
     }
 
     .top-link {
-
         font-size: 11px;
     }
 
     .logo {
-
         width: 78vw;
     }
 
-    .nav-button {
-
+    .side-button {
         width: 42px;
         height: 42px;
 
         font-size: 25px;
     }
 
-    #previous {
-
+    #previousSide {
         left: 10px;
     }
 
-    #next {
-
+    #nextSide {
         right: 10px;
     }
 
     .player {
-
         width:
-            calc(100vw - 40px);
+            calc(100vw - 30px);
 
-        height: 92px;
+        height: 90px;
 
-        bottom: 38px;
+        bottom: 36px;
 
         grid-template-columns:
             58px
             1fr
-            44px;
+            125px;
+
+        column-gap: 10px;
 
         border-radius: 50px;
     }
 
     .cover {
-
         width: 58px;
         height: 58px;
     }
 
     .song-title {
-
         font-size: 14px;
     }
 
     .song-artist {
-
         font-size: 10px;
     }
 
-    .play-button {
+    .control-pill {
+        width: 115px;
+        height: 50px;
 
-        width: 40px;
-        height: 40px;
+        gap: 9px;
+    }
+
+    .play-button {
+        width: 38px;
+        height: 38px;
 
         font-size: 16px;
     }
 
-    .menu-button {
+    .control-small {
+        font-size: 15px;
+    }
 
+    .menu-button {
         display: none;
     }
 
     .playlist-panel {
-
         left: 15px;
         right: 15px;
 
         width: auto;
 
-        bottom: 145px;
+        bottom: 140px;
     }
 
     .signature {
-
         font-size: 9px;
     }
-
 }
 
-
-/* =====================================================
-   REDUCE ANIMATION FOR USERS WHO REQUEST IT
-===================================================== */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media(prefers-reduced-motion: reduce) {
 
     .background {
-
         animation: none;
     }
-
 }
 
 </style>
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      BACKGROUND
 ===================================================== -->
 
 <div class="background"></div>
-
 <div class="overlay"></div>
 
 
@@ -983,7 +892,6 @@ body {
         11:13 am
     </div>
 
-
     <div class="online">
 
         <span class="online-dot"></span>
@@ -993,7 +901,6 @@ body {
         </span>
 
     </div>
-
 
     <div class="top-right">
 
@@ -1008,7 +915,6 @@ body {
             Spotify
 
         </div>
-
 
         <div
             class="top-link"
@@ -1028,7 +934,7 @@ body {
 
 
 <!-- =====================================================
-     CENTER LOGO
+     LOGO
 ===================================================== -->
 
 <div class="logo">
@@ -1041,27 +947,23 @@ body {
 
 
 <!-- =====================================================
-     PREVIOUS BUTTON
+     SIDE BUTTONS
 ===================================================== -->
 
 <button
-    class="nav-button"
-    id="previous"
-    aria-label="Previous song">
+    class="side-button"
+    id="previousSide"
+    aria-label="Previous">
 
     ‹
 
 </button>
 
 
-<!-- =====================================================
-     NEXT BUTTON
-===================================================== -->
-
 <button
-    class="nav-button"
-    id="next"
-    aria-label="Next song">
+    class="side-button"
+    id="nextSide"
+    aria-label="Next">
 
     ›
 
@@ -1077,20 +979,18 @@ body {
     id="playlistPanel">
 
     <div class="playlist-title">
-
         SIDHU MOOSEWALA PLAYLIST
-
     </div>
 
     <div class="playlist-info">
 
-        Your music is being played directly
-        from the YouTube playlist.
+        The player is connected directly
+        to your YouTube playlist.
 
         <br><br>
 
-        Use the previous and next buttons
-        to move through the playlist.
+        Use the compact controls to play,
+        pause, or move between songs.
 
     </div>
 
@@ -1116,7 +1016,7 @@ body {
     </div>
 
 
-    <!-- SONG INFORMATION -->
+    <!-- SONG INFO -->
 
     <div class="song-info">
 
@@ -1139,19 +1039,54 @@ body {
     </div>
 
 
-    <!-- SMALL PLAY / PAUSE -->
+    <!-- =================================================
+         COMPACT CONTROL PILL
+    ================================================== -->
 
-    <button
-        class="play-button"
-        id="playButton"
-        aria-label="Play">
-
-        ▶
-
-    </button>
+    <div class="control-pill">
 
 
-    <!-- PROGRESS -->
+        <!-- PREVIOUS -->
+
+        <button
+            class="control-small"
+            id="previousButton"
+            aria-label="Previous song">
+
+            |◀
+
+        </button>
+
+
+        <!-- PLAY / PAUSE -->
+
+        <button
+            class="play-button"
+            id="playButton"
+            aria-label="Play">
+
+            ▶
+
+        </button>
+
+
+        <!-- NEXT -->
+
+        <button
+            class="control-small"
+            id="nextButton"
+            aria-label="Next song">
+
+            ▶|
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         PROGRESS
+    ================================================== -->
 
     <div class="progress-area">
 
@@ -1163,16 +1098,13 @@ body {
 
         </span>
 
-
         <input
             class="progress"
             id="progress"
             type="range"
             min="0"
             max="100"
-            value="0"
-            aria-label="Song progress">
-
+            value="0">
 
         <span
             class="time"
@@ -1185,7 +1117,7 @@ body {
     </div>
 
 
-    <!-- PLAYLIST MENU -->
+    <!-- MENU -->
 
     <button
         class="menu-button"
@@ -1206,7 +1138,6 @@ body {
 <div
     class="status"
     id="status">
-
 </div>
 
 
@@ -1222,7 +1153,7 @@ body {
 
 
 <!-- =====================================================
-     YOUTUBE PLAYER
+     HIDDEN YOUTUBE PLAYER
 ===================================================== -->
 
 <div id="youtube-player"></div>
@@ -1231,7 +1162,7 @@ body {
 <script>
 
 /* =====================================================
-   PLAYLIST
+   YOUR PLAYLIST
 ===================================================== */
 
 const PLAYLIST_ID =
@@ -1239,7 +1170,7 @@ const PLAYLIST_ID =
 
 
 /* =====================================================
-   VARIABLES
+   PLAYER VARIABLES
 ===================================================== */
 
 let player = null;
@@ -1248,7 +1179,7 @@ let playerReady = false;
 
 let isPlaying = false;
 
-let statusTimeout = null;
+let statusTimer = null;
 
 
 /* =====================================================
@@ -1262,12 +1193,22 @@ const playButton =
 
 const previousButton =
     document.getElementById(
-        "previous"
+        "previousButton"
     );
 
 const nextButton =
     document.getElementById(
-        "next"
+        "nextButton"
+    );
+
+const previousSide =
+    document.getElementById(
+        "previousSide"
+    );
+
+const nextSide =
+    document.getElementById(
+        "nextSide"
     );
 
 const songTitle =
@@ -1317,8 +1258,7 @@ const playlistPanel =
 
 function updateClock() {
 
-    const now =
-        new Date();
+    const now = new Date();
 
     let hours =
         now.getHours();
@@ -1326,10 +1266,7 @@ function updateClock() {
     const minutes =
         String(
             now.getMinutes()
-        ).padStart(
-            2,
-            "0"
-        );
+        ).padStart(2, "0");
 
     const period =
         hours >= 12
@@ -1368,10 +1305,10 @@ function showStatus(message) {
     );
 
     clearTimeout(
-        statusTimeout
+        statusTimer
     );
 
-    statusTimeout =
+    statusTimer =
         setTimeout(
             function () {
 
@@ -1387,7 +1324,7 @@ function showStatus(message) {
 
 
 /* =====================================================
-   YOUTUBE API CALLBACK
+   YOUTUBE API
 ===================================================== */
 
 window.onYouTubeIframeAPIReady =
@@ -1399,8 +1336,7 @@ function () {
             {
 
                 width: "320",
-
-                height: "200",
+                height: "180",
 
                 playerVars: {
 
@@ -1454,12 +1390,6 @@ function onPlayerReady() {
 
     playerReady = true;
 
-    /*
-       Explicitly load the playlist.
-
-       This makes the playlist source unambiguous.
-    */
-
     try {
 
         player.cuePlaylist({
@@ -1476,7 +1406,7 @@ function onPlayerReady() {
 
     }
 
-    catch (error) {
+    catch(error) {
 
         console.error(error);
 
@@ -1496,7 +1426,7 @@ function onPlayerReady() {
 
 
 /* =====================================================
-   PLAYER STATE
+   STATE CHANGE
 ===================================================== */
 
 function onPlayerStateChange(event) {
@@ -1511,10 +1441,9 @@ function onPlayerStateChange(event) {
         playButton.textContent =
             "Ⅱ";
 
-        updateSongInformation();
+        updateSongInfo();
 
     }
-
 
     else if (
         event.data ===
@@ -1528,7 +1457,6 @@ function onPlayerStateChange(event) {
 
     }
 
-
     else if (
         event.data ===
         YT.PlayerState.ENDED
@@ -1541,13 +1469,12 @@ function onPlayerStateChange(event) {
 
     }
 
-
     else if (
         event.data ===
         YT.PlayerState.CUED
     ) {
 
-        updateSongInformation();
+        updateSongInfo();
 
     }
 
@@ -1555,67 +1482,48 @@ function onPlayerStateChange(event) {
 
 
 /* =====================================================
-   YOUTUBE ERROR
+   ERROR
 ===================================================== */
 
 function onPlayerError(event) {
 
     console.error(
-        "YouTube player error:",
+        "YouTube error:",
         event.data
     );
 
     let message =
         "YouTube playback error";
 
-    switch(event.data) {
-
-        case 2:
-
-            message =
-                "Invalid YouTube request";
-
-            break;
-
-
-        case 5:
-
-            message =
-                "HTML5 YouTube player error";
-
-            break;
-
-
-        case 100:
-
-            message =
-                "Video unavailable";
-
-            break;
-
-
-        case 101:
-
-        case 150:
-
-            message =
-                "This video cannot be embedded";
-
-            break;
-
-
-        case 153:
-
-            message =
-                "YouTube rejected the player request";
-
-            break;
-
+    if (event.data === 2) {
+        message =
+            "Invalid YouTube request";
     }
 
-    showStatus(
-        message
-    );
+    if (event.data === 5) {
+        message =
+            "HTML5 player error";
+    }
+
+    if (event.data === 100) {
+        message =
+            "Video unavailable";
+    }
+
+    if (
+        event.data === 101 ||
+        event.data === 150
+    ) {
+        message =
+            "Video cannot be embedded";
+    }
+
+    if (event.data === 153) {
+        message =
+            "YouTube rejected the player request";
+    }
+
+    showStatus(message);
 
 }
 
@@ -1631,13 +1539,12 @@ playButton.addEventListener(
         if (!playerReady) {
 
             showStatus(
-                "YouTube is still loading..."
+                "YouTube is loading..."
             );
 
             return;
 
         }
-
 
         if (isPlaying) {
 
@@ -1646,12 +1553,6 @@ playButton.addEventListener(
         }
 
         else {
-
-            /*
-               Important:
-               This happens directly because
-               the user clicked the button.
-            */
 
             player.playVideo();
 
@@ -1665,85 +1566,103 @@ playButton.addEventListener(
    PREVIOUS
 ===================================================== */
 
-previousButton.addEventListener(
-    "click",
-    function () {
+function previousSong() {
 
-        if (!playerReady) {
+    if (!playerReady) {
 
-            showStatus(
-                "Playlist is loading..."
-            );
+        showStatus(
+            "Playlist is loading..."
+        );
 
-            return;
-
-        }
-
-        try {
-
-            player.previousVideo();
-
-        }
-
-        catch(error) {
-
-            console.error(error);
-
-        }
+        return;
 
     }
-);
+
+    try {
+
+        player.previousVideo();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+    }
+
+}
 
 
 /* =====================================================
    NEXT
 ===================================================== */
 
-nextButton.addEventListener(
-    "click",
-    function () {
+function nextSong() {
 
-        if (!playerReady) {
+    if (!playerReady) {
 
-            showStatus(
-                "Playlist is loading..."
-            );
+        showStatus(
+            "Playlist is loading..."
+        );
 
-            return;
-
-        }
-
-        try {
-
-            player.nextVideo();
-
-        }
-
-        catch(error) {
-
-            console.error(error);
-
-        }
+        return;
 
     }
+
+    try {
+
+        player.nextVideo();
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* COMPACT BUTTONS */
+
+previousButton.addEventListener(
+    "click",
+    previousSong
+);
+
+nextButton.addEventListener(
+    "click",
+    nextSong
+);
+
+
+/* SIDE BUTTONS */
+
+previousSide.addEventListener(
+    "click",
+    previousSong
+);
+
+nextSide.addEventListener(
+    "click",
+    nextSong
 );
 
 
 /* =====================================================
-   UPDATE SONG INFORMATION
+   SONG INFO
 ===================================================== */
 
-function updateSongInformation() {
+function updateSongInfo() {
 
     if (!playerReady)
         return;
-
 
     try {
 
         const data =
             player.getVideoData();
-
 
         if (
             data &&
@@ -1755,7 +1674,6 @@ function updateSongInformation() {
 
         }
 
-
         if (
             data &&
             data.author
@@ -1765,7 +1683,6 @@ function updateSongInformation() {
                 data.author;
 
         }
-
 
         if (
             data &&
@@ -1784,7 +1701,7 @@ function updateSongInformation() {
     catch(error) {
 
         console.log(
-            "Waiting for YouTube metadata..."
+            "Waiting for song metadata..."
         );
 
     }
@@ -1801,7 +1718,6 @@ function updateProgress() {
     if (!playerReady)
         return;
 
-
     try {
 
         const total =
@@ -1809,7 +1725,6 @@ function updateProgress() {
 
         const current =
             player.getCurrentTime();
-
 
         if (
             total &&
@@ -1823,14 +1738,10 @@ function updateProgress() {
                 ) * 100;
 
             currentTime.textContent =
-                formatTime(
-                    current
-                );
+                formatTime(current);
 
             duration.textContent =
-                formatTime(
-                    total
-                );
+                formatTime(total);
 
         }
 
@@ -1838,7 +1749,7 @@ function updateProgress() {
 
     catch(error) {
 
-        // Metadata isn't ready yet.
+        // Metadata not ready yet.
 
     }
 
@@ -1861,25 +1772,21 @@ progress.addEventListener(
         if (!playerReady)
             return;
 
-
         const total =
             player.getDuration();
-
 
         if (!total)
             return;
 
-
-        const position =
+        const target =
             (
                 Number(
                     progress.value
                 ) / 100
             ) * total;
 
-
         player.seekTo(
-            position,
+            target,
             true
         );
 
@@ -1888,7 +1795,7 @@ progress.addEventListener(
 
 
 /* =====================================================
-   FORMAT TIME
+   TIME FORMAT
 ===================================================== */
 
 function formatTime(seconds) {
@@ -1898,12 +1805,10 @@ function formatTime(seconds) {
             Number(seconds) || 0
         );
 
-
     const minutes =
         Math.floor(
             seconds / 60
         );
-
 
     const remaining =
         String(
@@ -1912,7 +1817,6 @@ function formatTime(seconds) {
             2,
             "0"
         );
-
 
     return (
         minutes +
@@ -1924,13 +1828,11 @@ function formatTime(seconds) {
 
 
 /* =====================================================
-   PLAYLIST MENU
+   PLAYLIST PANEL
 ===================================================== */
 
 document
-.getElementById(
-    "menuButton"
-)
+.getElementById("menuButton")
 .addEventListener(
     "click",
     function () {
@@ -1948,9 +1850,7 @@ document
 ===================================================== */
 
 document
-.getElementById(
-    "ytMusicButton"
-)
+.getElementById("ytMusicButton")
 .addEventListener(
     "click",
     function () {
@@ -1970,9 +1870,7 @@ document
 ===================================================== */
 
 document
-.getElementById(
-    "spotifyButton"
-)
+.getElementById("spotifyButton")
 .addEventListener(
     "click",
     function () {
@@ -2005,23 +1903,21 @@ document.addEventListener(
 
         }
 
-
         if (
             event.key ===
             "ArrowLeft"
         ) {
 
-            previousButton.click();
+            previousSong();
 
         }
-
 
         if (
             event.key ===
             "ArrowRight"
         ) {
 
-            nextButton.click();
+            nextSong();
 
         }
 
