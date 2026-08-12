@@ -30,7 +30,6 @@
     box-sizing: border-box;
 }
 
-
 html,
 body {
 
@@ -92,24 +91,15 @@ body {
 @keyframes backgroundZoom {
 
     0% {
-
-        transform:
-            scale(1);
-
+        transform: scale(1);
     }
 
     50% {
-
-        transform:
-            scale(1.035);
-
+        transform: scale(1.035);
     }
 
     100% {
-
-        transform:
-            scale(1.075);
-
+        transform: scale(1.075);
     }
 
 }
@@ -137,7 +127,6 @@ body {
             transparent 45%,
             rgba(0,0,0,0.25)
         );
-
 }
 
 
@@ -170,7 +159,6 @@ body {
     text-shadow:
         0 2px 10px
         rgba(0,0,0,0.85);
-
 }
 
 
@@ -190,7 +178,6 @@ body {
     gap: 9px;
 
     white-space: nowrap;
-
 }
 
 
@@ -207,7 +194,6 @@ body {
     box-shadow:
         0 0 14px
         rgba(93,245,142,0.9);
-
 }
 
 
@@ -218,7 +204,6 @@ body {
     align-items: center;
 
     gap: 24px;
-
 }
 
 
@@ -236,14 +221,11 @@ body {
 
     transition:
         opacity .15s ease;
-
 }
 
 
 .top-link:hover {
-
     opacity: 1;
-
 }
 
 
@@ -266,7 +248,6 @@ body {
     justify-content: center;
 
     font-size: 11px;
-
 }
 
 
@@ -284,8 +265,15 @@ body {
 
     top: 47%;
 
+    /*
+       Previously:
+       min(650px, 58vw)
+
+       Now approximately 50%
+    */
+
     width:
-        min(650px, 58vw);
+        min(325px, 29vw);
 
     transform:
         translate(-50%, -50%);
@@ -297,7 +285,6 @@ body {
             0 12px 25px
             rgba(0,0,0,.35)
         );
-
 }
 
 
@@ -308,7 +295,6 @@ body {
     height: auto;
 
     display: block;
-
 }
 
 
@@ -358,7 +344,6 @@ body {
     transition:
         transform .1s ease,
         background .1s ease;
-
 }
 
 
@@ -370,7 +355,6 @@ body {
     transform:
         translateY(-50%)
         scale(1.05);
-
 }
 
 
@@ -379,26 +363,21 @@ body {
     transform:
         translateY(-50%)
         scale(.88);
-
 }
 
 
 #previousSide {
-
     left: 28px;
-
 }
 
 
 #nextSide {
-
     right: 28px;
-
 }
 
 
 /* =========================================================
-   MAIN MUSIC PLAYER
+   MUSIC PLAYER
 ========================================================= */
 
 .player {
@@ -455,12 +434,11 @@ body {
     column-gap: 13px;
 
     align-items: center;
-
 }
 
 
 /* =========================================================
-   ALBUM ART
+   COVER
 ========================================================= */
 
 .cover {
@@ -482,7 +460,6 @@ body {
     box-shadow:
         0 6px 20px
         rgba(0,0,0,.4);
-
 }
 
 
@@ -495,12 +472,11 @@ body {
     object-fit: cover;
 
     display: block;
-
 }
 
 
 /* =========================================================
-   SONG INFO
+   SONG INFORMATION
 ========================================================= */
 
 .song-info {
@@ -509,7 +485,6 @@ body {
 
     align-self:
         center;
-
 }
 
 
@@ -526,7 +501,6 @@ body {
     overflow: hidden;
 
     text-overflow: ellipsis;
-
 }
 
 
@@ -544,13 +518,11 @@ body {
     overflow: hidden;
 
     text-overflow: ellipsis;
-
 }
 
 
 /* =========================================================
    CONTROLS
-   DIRECTLY INSIDE PLAYER
 ========================================================= */
 
 .controls {
@@ -566,11 +538,8 @@ body {
     justify-content: flex-end;
 
     gap: 12px;
-
 }
 
-
-/* PREVIOUS / NEXT */
 
 .control-button {
 
@@ -601,14 +570,11 @@ body {
     transition:
         transform .08s ease,
         opacity .08s ease;
-
 }
 
 
 .control-button:hover {
-
     opacity: 1;
-
 }
 
 
@@ -616,7 +582,6 @@ body {
 
     transform:
         scale(.75);
-
 }
 
 
@@ -656,7 +621,6 @@ body {
 
     transition:
         transform .08s ease;
-
 }
 
 
@@ -664,7 +628,6 @@ body {
 
     transform:
         scale(1.04);
-
 }
 
 
@@ -672,12 +635,11 @@ body {
 
     transform:
         scale(.86);
-
 }
 
 
 /* =========================================================
-   PROGRESS BAR
+   PROGRESS
 ========================================================= */
 
 .progress-area {
@@ -698,7 +660,6 @@ body {
     align-items: center;
 
     gap: 7px;
-
 }
 
 
@@ -708,7 +669,6 @@ body {
 
     color:
         rgba(255,255,255,.72);
-
 }
 
 
@@ -728,7 +688,6 @@ body {
         rgba(255,255,255,.30);
 
     cursor: pointer;
-
 }
 
 
@@ -745,7 +704,6 @@ body {
     border-radius: 50%;
 
     background: white;
-
 }
 
 
@@ -760,12 +718,11 @@ body {
     border-radius: 50%;
 
     background: white;
-
 }
 
 
 /* =========================================================
-   PLAYLIST MENU
+   MENU BUTTON
 ========================================================= */
 
 .menu-button {
@@ -797,7 +754,6 @@ body {
     font-size: 17px;
 
     cursor: pointer;
-
 }
 
 
@@ -805,12 +761,11 @@ body {
 
     background:
         rgba(20,15,13,.55);
-
 }
 
 
 /* =========================================================
-   PLAYLIST PANEL
+   YOUTUBE PLAYLIST PANEL
 ========================================================= */
 
 .playlist-panel {
@@ -856,7 +811,6 @@ body {
         opacity .15s ease,
         transform .15s ease,
         visibility .15s ease;
-
 }
 
 
@@ -868,7 +822,6 @@ body {
 
     transform:
         translateY(0);
-
 }
 
 
@@ -883,7 +836,6 @@ body {
         rgba(255,255,255,.55);
 
     margin-bottom: 14px;
-
 }
 
 
@@ -895,7 +847,95 @@ body {
 
     color:
         rgba(255,255,255,.65);
+}
 
+
+/* =========================================================
+   SPOTIFY PANEL
+========================================================= */
+
+.spotify-panel {
+
+    position: fixed;
+
+    z-index: 46;
+
+    right: 35px;
+
+    bottom: 165px;
+
+    width: 350px;
+
+    height: 390px;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(18,14,12,.96);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.6);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(12px);
+
+    transition:
+        opacity .15s ease,
+        transform .15s ease,
+        visibility .15s ease;
+}
+
+
+.spotify-panel.open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+}
+
+
+.spotify-title {
+
+    font-size: 12px;
+
+    letter-spacing:
+        .14em;
+
+    color:
+        rgba(255,255,255,.55);
+
+    margin-bottom: 12px;
+}
+
+
+.spotify-panel iframe {
+
+    display: block;
+
+    width: 100%;
+
+    height: 340px;
+
+    border: none;
+
+    border-radius: 12px;
 }
 
 
@@ -935,14 +975,11 @@ body {
 
     transition:
         opacity .12s ease;
-
 }
 
 
 .status.show {
-
     opacity: 1;
-
 }
 
 
@@ -965,7 +1002,6 @@ body {
     opacity: 0;
 
     pointer-events: none;
-
 }
 
 
@@ -996,7 +1032,6 @@ body {
     text-shadow:
         0 2px 10px
         rgba(0,0,0,.9);
-
 }
 
 
@@ -1014,36 +1049,28 @@ body {
         left: 15px;
 
         right: 15px;
-
     }
 
 
     .online {
-
         display: none;
-
     }
 
 
     .top-right {
-
         gap: 10px;
-
     }
 
 
     .top-link {
-
         font-size: 11px;
-
     }
 
 
     .logo {
 
         width:
-            78vw;
-
+            45vw;
     }
 
 
@@ -1054,21 +1081,16 @@ body {
         height: 40px;
 
         font-size: 25px;
-
     }
 
 
     #previousSide {
-
         left: 8px;
-
     }
 
 
     #nextSide {
-
         right: 8px;
-
     }
 
 
@@ -1090,7 +1112,6 @@ body {
             105px;
 
         column-gap: 8px;
-
     }
 
 
@@ -1099,28 +1120,21 @@ body {
         width: 52px;
 
         height: 52px;
-
     }
 
 
     .song-title {
-
         font-size: 13px;
-
     }
 
 
     .song-artist {
-
         font-size: 10px;
-
     }
 
 
     .controls {
-
         gap: 5px;
-
     }
 
 
@@ -1129,7 +1143,6 @@ body {
         width: 19px;
 
         font-size: 12px;
-
     }
 
 
@@ -1140,18 +1153,16 @@ body {
         height: 40px;
 
         font-size: 15px;
-
     }
 
 
     .menu-button {
-
         display: none;
-
     }
 
 
-    .playlist-panel {
+    .playlist-panel,
+    .spotify-panel {
 
         left: 15px;
 
@@ -1160,14 +1171,11 @@ body {
         width: auto;
 
         bottom: 130px;
-
     }
 
 
     .signature {
-
         font-size: 9px;
-
     }
 
 }
@@ -1196,19 +1204,14 @@ body {
 <div class="topbar">
 
 
-    <div
-        id="clock">
-
+    <div id="clock">
         11:13 am
-
     </div>
 
 
     <div class="online">
 
-        <span
-            class="online-dot">
-        </span>
+        <span class="online-dot"></span>
 
         <span>
             listening now
@@ -1224,11 +1227,8 @@ body {
             class="top-link"
             id="spotifyButton">
 
-            <span
-                class="icon-circle">
-
+            <span class="icon-circle">
                 S
-
             </span>
 
             Spotify
@@ -1240,11 +1240,8 @@ body {
             class="top-link"
             id="ytMusicButton">
 
-            <span
-                class="icon-circle">
-
+            <span class="icon-circle">
                 ▶
-
             </span>
 
             YT Music
@@ -1254,12 +1251,11 @@ body {
 
     </div>
 
-
 </div>
 
 
 <!-- =====================================================
-     LOGO
+     CENTER LOGO
 ===================================================== -->
 
 <div class="logo">
@@ -1296,7 +1292,7 @@ body {
 
 
 <!-- =====================================================
-     PLAYLIST PANEL
+     YOUTUBE PLAYLIST PANEL
 ===================================================== -->
 
 <div
@@ -1327,6 +1323,49 @@ body {
 
     </div>
 
+</div>
+
+
+<!-- =====================================================
+     SPOTIFY PANEL
+===================================================== -->
+
+<div
+    class="spotify-panel"
+    id="spotifyPanel">
+
+
+    <div class="spotify-title">
+
+        SIDHU MOOSEWALA — SPOTIFY
+
+    </div>
+
+
+    <iframe
+
+        src="https://open.spotify.com/embed/playlist/5W4HW18UxqA2d8AVLsbbOm?utm_source=generator&theme=0"
+
+        width="100%"
+
+        height="340"
+
+        frameborder="0"
+
+        allowfullscreen=""
+
+        allow="
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            fullscreen;
+            picture-in-picture
+        "
+
+        loading="lazy">
+
+    </iframe>
+
 
 </div>
 
@@ -1338,7 +1377,7 @@ body {
 <div class="player">
 
 
-    <!-- ALBUM ART -->
+    <!-- COVER -->
 
     <div class="cover">
 
@@ -1350,7 +1389,7 @@ body {
     </div>
 
 
-    <!-- SONG INFORMATION -->
+    <!-- SONG INFO -->
 
     <div class="song-info">
 
@@ -1376,9 +1415,7 @@ body {
     </div>
 
 
-    <!-- =================================================
-         PROGRESS
-    ================================================== -->
+    <!-- PROGRESS -->
 
     <div class="progress-area">
 
@@ -1393,12 +1430,19 @@ body {
 
 
         <input
+
             class="progress"
+
             id="progress"
+
             type="range"
+
             min="0"
+
             max="100"
+
             value="0"
+
         >
 
 
@@ -1414,9 +1458,7 @@ body {
     </div>
 
 
-    <!-- =================================================
-         CONTROLS
-    ================================================== -->
+    <!-- CONTROLS -->
 
     <div class="controls">
 
@@ -1491,7 +1533,7 @@ body {
 
 
 <!-- =====================================================
-     YOUTUBE IFRAME
+     HIDDEN YOUTUBE PLAYER
 ===================================================== -->
 
 <div id="youtube-player"></div>
@@ -1499,13 +1541,15 @@ body {
 
 <script>
 
-
 /* =========================================================
-   YOUR YOUTUBE PLAYLIST
+   PLAYLIST IDS
 ========================================================= */
 
-const PLAYLIST_ID =
+const YOUTUBE_PLAYLIST_ID =
     "PL61b1x9YzrKU-5RwcdWd3ygy2-4Aiznjg";
+
+const SPOTIFY_PLAYLIST_ID =
+    "5W4HW18UxqA2d8AVLsbbOm";
 
 
 /* =========================================================
@@ -1590,6 +1634,11 @@ const playlistPanel =
         "playlistPanel"
     );
 
+const spotifyPanel =
+    document.getElementById(
+        "spotifyPanel"
+    );
+
 
 /* =========================================================
    CLOCK
@@ -1667,7 +1716,7 @@ function showStatus(message) {
 
 
 /* =========================================================
-   YOUTUBE API
+   YOUTUBE IFRAME API
 ========================================================= */
 
 window.onYouTubeIframeAPIReady =
@@ -1699,7 +1748,7 @@ function() {
                         "playlist",
 
                     list:
-                        PLAYLIST_ID,
+                        YOUTUBE_PLAYLIST_ID,
 
                     loop: 1,
 
@@ -1731,7 +1780,7 @@ function() {
 
 
 /* =========================================================
-   READY
+   YOUTUBE READY
 ========================================================= */
 
 function onPlayerReady() {
@@ -1747,7 +1796,7 @@ function onPlayerReady() {
                 "playlist",
 
             list:
-                PLAYLIST_ID,
+                YOUTUBE_PLAYLIST_ID,
 
             index: 0
 
@@ -1921,16 +1970,10 @@ playButton.addEventListener(
         if (isPlaying) {
 
 
-            /*
-             * Update UI FIRST.
-             * This makes the button feel instant.
-             */
-
             isPlaying = false;
 
             playButton.textContent =
                 "▶";
-
 
             player.pauseVideo();
 
@@ -1940,15 +1983,10 @@ playButton.addEventListener(
         else {
 
 
-            /*
-             * Update UI FIRST.
-             */
-
             isPlaying = true;
 
             playButton.textContent =
                 "Ⅱ";
-
 
             player.playVideo();
 
@@ -1959,7 +1997,7 @@ playButton.addEventListener(
 
 
 /* =========================================================
-   PREVIOUS SONG
+   PREVIOUS
 ========================================================= */
 
 function previousSong() {
@@ -1978,10 +2016,6 @@ function previousSong() {
 
     }
 
-
-    /*
-     * Immediate visual feedback.
-     */
 
     previousButton.style.transform =
         "scale(.75)";
@@ -2017,7 +2051,7 @@ function previousSong() {
 
 
 /* =========================================================
-   NEXT SONG
+   NEXT
 ========================================================= */
 
 function nextSong() {
@@ -2036,10 +2070,6 @@ function nextSong() {
 
     }
 
-
-    /*
-     * Immediate visual feedback.
-     */
 
     nextButton.style.transform =
         "scale(.75)";
@@ -2103,7 +2133,7 @@ nextSide.addEventListener(
 
 
 /* =========================================================
-   SONG INFO
+   SONG INFORMATION
 ========================================================= */
 
 function updateSongInfo() {
@@ -2220,14 +2250,13 @@ function updateProgress() {
                     total
                 );
 
-
         }
 
     }
 
     catch(error) {
 
-        // Player not ready yet.
+        // Player isn't ready.
 
     }
 
@@ -2296,11 +2325,10 @@ progress.addEventListener(
 
 
 /* =========================================================
-   TIME FORMAT
+   FORMAT TIME
 ========================================================= */
 
 function formatTime(seconds) {
-
 
     seconds =
         Math.floor(
@@ -2333,7 +2361,7 @@ function formatTime(seconds) {
 
 
 /* =========================================================
-   PLAYLIST MENU
+   YOUTUBE PLAYLIST MENU
 ========================================================= */
 
 document
@@ -2344,7 +2372,18 @@ document
         "click",
         function() {
 
+
             playlistPanel.classList.toggle(
+                "open"
+            );
+
+
+            /*
+             * Close Spotify when YouTube
+             * playlist is opened.
+             */
+
+            spotifyPanel.classList.remove(
                 "open"
             );
 
@@ -2353,7 +2392,38 @@ document
 
 
 /* =========================================================
-   YOUTUBE MUSIC
+   SPOTIFY BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "spotifyButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+
+            spotifyPanel.classList.toggle(
+                "open"
+            );
+
+
+            /*
+             * Close YouTube playlist
+             * panel.
+             */
+
+            playlistPanel.classList.remove(
+                "open"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   YOUTUBE MUSIC BUTTON
 ========================================================= */
 
 document
@@ -2368,45 +2438,18 @@ document
             window.open(
 
                 "https://music.youtube.com/playlist?list=" +
-                PLAYLIST_ID,
+                YOUTUBE_PLAYLIST_ID,
 
                 "_blank"
 
             );
-
 
         }
     );
 
 
 /* =========================================================
-   SPOTIFY
-========================================================= */
-
-document
-    .getElementById(
-        "spotifyButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-
-            window.open(
-
-                "https://open.spotify.com/search/Sidhu%20Moosewala",
-
-                "_blank"
-
-            );
-
-
-        }
-    );
-
-
-/* =========================================================
-   KEYBOARD
+   KEYBOARD CONTROLS
 ========================================================= */
 
 document.addEventListener(
@@ -2460,7 +2503,35 @@ document.addEventListener(
 
 
 /* =========================================================
-   LOAD YOUTUBE IFRAME API
+   CLOSE PANELS WITH ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            playlistPanel.classList.remove(
+                "open"
+            );
+
+            spotifyPanel.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOAD YOUTUBE API
 ========================================================= */
 
 const youtubeScript =
