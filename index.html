@@ -2,1185 +2,705 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <title>अटल जिम</title>
 
-<meta
-    name="referrer"
-    content="strict-origin-when-cross-origin"
->
+    <style>
 
-<title>अटल जिम</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #050505;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-<style>
 
-/* =========================================================
-   RESET
-========================================================= */
+        /* ================================
+           BACKGROUND
+        ================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        .background {
+            position: fixed;
+            inset: -5%;
 
-html,
-body {
+            width: 110%;
+            height: 110%;
 
-    width: 100%;
-    height: 100%;
+            z-index: 0;
 
-    overflow: hidden;
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.08),
+                    rgba(0,0,0,0.25)
+                ),
+                url("assets/gym-sidhu.png");
 
-    background: #050505;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
-    color: white;
+            animation:
+                slowZoom 25s ease-in-out infinite alternate;
+        }
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-}
 
+        @keyframes slowZoom {
 
-/* =========================================================
-   BACKGROUND
-========================================================= */
+            from {
+                transform: scale(1);
+            }
 
-.background {
+            to {
+                transform: scale(1.07);
+            }
 
-    position: fixed;
+        }
 
-    inset: -5%;
 
-    width: 110%;
-    height: 110%;
+        /* ================================
+           DARK OVERLAY
+        ================================= */
 
-    z-index: 0;
+        .overlay {
+            position: fixed;
+            inset: 0;
 
-    background-image:
+            z-index: 1;
 
-        linear-gradient(
-            rgba(0,0,0,0.04),
-            rgba(0,0,0,0.25)
-        ),
+            pointer-events: none;
 
-        url("assets/gym-sidhu.png");
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(0,0,0,0.02),
+                    rgba(0,0,0,0.18)
+                );
+        }
 
-    background-size: cover;
 
-    background-position: center;
+        /* ================================
+           TOP BAR
+        ================================= */
 
-    background-repeat: no-repeat;
+        .topbar {
 
-    animation:
-        backgroundZoom
-        24s
-        ease-in-out
-        infinite
-        alternate;
-}
+            position: fixed;
 
+            top: 28px;
+            left: 30px;
+            right: 30px;
 
-@keyframes backgroundZoom {
+            z-index: 20;
 
-    0% {
-        transform: scale(1);
-    }
+            display: flex;
 
-    50% {
-        transform: scale(1.035);
-    }
+            align-items: center;
 
-    100% {
-        transform: scale(1.075);
-    }
+            justify-content: space-between;
 
-}
+            font-size: 16px;
 
+            font-weight: 700;
 
-/* =========================================================
-   OVERLAY
-========================================================= */
+            text-shadow:
+                0 2px 10px rgba(0,0,0,.9);
+        }
 
-.overlay {
 
-    position: fixed;
+        .clock {
+            white-space: nowrap;
+        }
 
-    inset: 0;
 
-    z-index: 1;
+        .online {
 
-    pointer-events: none;
+            position: absolute;
 
-    background:
+            left: 50%;
 
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,0.03),
-            transparent 45%,
-            rgba(0,0,0,0.25)
-        );
-}
+            transform: translateX(-50%);
 
+            display: flex;
 
-/* =========================================================
-   TOP BAR
-========================================================= */
+            align-items: center;
 
-.topbar {
+            gap: 9px;
 
-    position: fixed;
+            white-space: nowrap;
+        }
 
-    top: 28px;
 
-    left: 30px;
+        .online-dot {
 
-    right: 30px;
+            width: 11px;
+            height: 11px;
 
-    z-index: 30;
+            border-radius: 50%;
 
-    display: flex;
+            background: #5df58e;
 
-    align-items: center;
+            box-shadow:
+                0 0 14px
+                rgba(93,245,142,.9);
+        }
 
-    justify-content: space-between;
 
-    font-size: 16px;
+        .top-right {
 
-    font-weight: 700;
+            display: flex;
 
-    text-shadow:
-        0 2px 10px
-        rgba(0,0,0,0.85);
-}
+            align-items: center;
 
+            gap: 24px;
+        }
 
-.online {
 
-    position: absolute;
+        .top-link {
 
-    left: 50%;
+            display: flex;
 
-    transform:
-        translateX(-50%);
+            align-items: center;
 
-    display: flex;
+            gap: 8px;
 
-    align-items: center;
+            cursor: pointer;
 
-    gap: 9px;
+            opacity: .9;
 
-    white-space: nowrap;
-}
+            transition: opacity .15s ease;
+        }
 
 
-.online-dot {
+        .top-link:hover {
+            opacity: 1;
+        }
 
-    width: 11px;
 
-    height: 11px;
+        .icon-circle {
 
-    border-radius: 50%;
+            width: 27px;
+            height: 27px;
 
-    background: #5df58e;
+            border:
+                1px solid
+                rgba(255,255,255,.75);
 
-    box-shadow:
-        0 0 14px
-        rgba(93,245,142,0.9);
-}
+            border-radius: 50%;
 
+            display: flex;
 
-.top-right {
+            align-items: center;
+            justify-content: center;
 
-    display: flex;
+            font-size: 11px;
+        }
 
-    align-items: center;
 
-    gap: 24px;
-}
+        /* ================================
+           ATAL GYM LOGO
+           50% SIZE
+        ================================= */
 
+        .logo {
 
-.top-link {
+            position: fixed;
 
-    display: flex;
+            z-index: 10;
 
-    align-items: center;
+            left: 50%;
+            top: 47%;
 
-    gap: 8px;
+            width:
+                min(325px, 29vw);
 
-    cursor: pointer;
+            transform:
+                translate(-50%, -50%);
 
-    opacity: 0.9;
+            pointer-events: none;
 
-    transition:
-        opacity .15s ease;
-}
+            filter:
+                drop-shadow(
+                    0 12px 25px
+                    rgba(0,0,0,.35)
+                );
+        }
 
 
-.top-link:hover {
-    opacity: 1;
-}
+        .logo img {
 
+            display: block;
 
-.icon-circle {
+            width: 100%;
+            height: auto;
+        }
 
-    width: 27px;
 
-    height: 27px;
+        /* ================================
+           SIDE ARROWS
+        ================================= */
 
-    border:
-        1px solid
-        rgba(255,255,255,.7);
+        .side-button {
 
-    border-radius: 50%;
+            position: fixed;
 
-    display: flex;
+            top: 50%;
 
-    align-items: center;
+            z-index: 25;
 
-    justify-content: center;
+            width: 48px;
+            height: 48px;
 
-    font-size: 11px;
-}
+            transform:
+                translateY(-50%);
 
+            border:
+                1px solid
+                rgba(255,255,255,.22);
 
-/* =========================================================
-   CENTER LOGO
-========================================================= */
+            border-radius: 50%;
 
-.logo {
+            background:
+                rgba(25,20,18,.25);
 
-    position: fixed;
+            backdrop-filter:
+                blur(8px);
 
-    z-index: 10;
+            color: white;
 
-    left: 50%;
+            display: flex;
 
-    top: 47%;
+            align-items: center;
+            justify-content: center;
 
-    /*
-       Previously:
-       min(650px, 58vw)
+            font-size: 28px;
 
-       Now approximately 50%
-    */
+            cursor: pointer;
 
-    width:
-        min(325px, 29vw);
+            transition:
+                background .15s ease,
+                transform .1s ease;
+        }
 
-    transform:
-        translate(-50%, -50%);
 
-    pointer-events: none;
+        .side-button:hover {
 
-    filter:
-        drop-shadow(
-            0 12px 25px
-            rgba(0,0,0,.35)
-        );
-}
+            background:
+                rgba(25,20,18,.55);
 
+            transform:
+                translateY(-50%)
+                scale(1.05);
+        }
 
-.logo img {
 
-    width: 100%;
+        .side-button:active {
 
-    height: auto;
+            transform:
+                translateY(-50%)
+                scale(.85);
+        }
 
-    display: block;
-}
 
+        #previousSide {
+            left: 28px;
+        }
 
-/* =========================================================
-   SIDE NAVIGATION
-========================================================= */
 
-.side-button {
+        #nextSide {
+            right: 28px;
+        }
 
-    position: fixed;
 
-    top: 50%;
+        /* ================================
+           SPOTIFY PLAYER CONTAINER
+        ================================= */
 
-    z-index: 25;
+        .spotify-player {
 
-    width: 48px;
+            position: fixed;
 
-    height: 48px;
+            z-index: 50;
 
-    transform:
-        translateY(-50%);
+            left: 50%;
 
-    border:
-        1px solid
-        rgba(255,255,255,.20);
+            bottom: 48px;
 
-    border-radius: 50%;
+            transform:
+                translateX(-50%);
 
-    background:
-        rgba(25,20,18,.25);
+            width:
+                min(650px, calc(100vw - 90px));
 
-    backdrop-filter:
-        blur(8px);
+            border-radius: 28px;
 
-    color: white;
+            overflow: hidden;
 
-    display: flex;
+            background:
+                rgba(70,25,20,.90);
 
-    align-items: center;
+            box-shadow:
 
-    justify-content: center;
+                0 20px 60px
+                rgba(0,0,0,.60),
 
-    font-size: 29px;
+                inset
+                0 1px
+                rgba(255,255,255,.10);
 
-    cursor: pointer;
+            backdrop-filter:
+                blur(15px);
+        }
 
-    transition:
-        transform .1s ease,
-        background .1s ease;
-}
 
+        .spotify-player iframe {
 
-.side-button:hover {
+            display: block;
 
-    background:
-        rgba(25,20,18,.5);
+            width: 100%;
 
-    transform:
-        translateY(-50%)
-        scale(1.05);
-}
+            height: 152px;
 
+            border: none;
+        }
 
-.side-button:active {
 
-    transform:
-        translateY(-50%)
-        scale(.88);
-}
+        /* ================================
+           SPOTIFY HEADER
+        ================================= */
 
+        .player-header {
 
-#previousSide {
-    left: 28px;
-}
+            position: absolute;
 
+            top: 9px;
+            left: 15px;
 
-#nextSide {
-    right: 28px;
-}
+            z-index: 5;
 
+            pointer-events: none;
 
-/* =========================================================
-   MUSIC PLAYER
-========================================================= */
+            font-size: 10px;
 
-.player {
+            letter-spacing: .12em;
 
-    position: fixed;
+            color:
+                rgba(255,255,255,.55);
+        }
 
-    z-index: 50;
 
-    left: 50%;
+        /* ================================
+           PLAYLIST PANEL
+        ================================= */
 
-    bottom: 52px;
+        .playlist-panel {
 
-    transform:
-        translateX(-50%);
+            position: fixed;
 
-    width:
-        min(650px, calc(100vw - 100px));
+            z-index: 60;
 
-    height: 94px;
+            right: 35px;
 
-    padding:
-        10px 14px;
+            bottom: 220px;
 
-    border-radius: 50px;
+            width: 350px;
 
-    background:
+            height: 390px;
 
-        linear-gradient(
-            135deg,
-            rgba(120,45,35,.96),
-            rgba(94,30,23,.96)
-        );
+            padding: 18px;
 
-    box-shadow:
+            border-radius: 18px;
 
-        0 20px 55px
-        rgba(0,0,0,.55),
+            background:
+                rgba(18,14,12,.94);
 
-        inset
-        0 1px
-        rgba(255,255,255,.12);
+            border:
+                1px solid
+                rgba(255,255,255,.12);
 
-    display: grid;
+            backdrop-filter:
+                blur(18px);
 
-    grid-template-columns:
-        62px
-        minmax(0,1fr)
-        112px;
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.65);
 
-    grid-template-rows:
-        1fr
-        22px;
+            opacity: 0;
 
-    column-gap: 13px;
+            visibility: hidden;
 
-    align-items: center;
-}
+            transform:
+                translateY(12px);
 
+            transition:
+                opacity .15s ease,
+                transform .15s ease,
+                visibility .15s ease;
+        }
 
-/* =========================================================
-   COVER
-========================================================= */
 
-.cover {
+        .playlist-panel.open {
 
-    width: 62px;
+            opacity: 1;
 
-    height: 62px;
+            visibility: visible;
 
-    grid-row:
-        1 / 3;
+            transform:
+                translateY(0);
+        }
 
-    border-radius: 50%;
 
-    overflow: hidden;
+        .playlist-title {
 
-    background:
-        #24100d;
+            font-size: 12px;
 
-    box-shadow:
-        0 6px 20px
-        rgba(0,0,0,.4);
-}
+            letter-spacing: .14em;
 
+            color:
+                rgba(255,255,255,.55);
 
-.cover img {
+            margin-bottom: 14px;
+        }
 
-    width: 100%;
 
-    height: 100%;
+        .playlist-panel iframe {
 
-    object-fit: cover;
+            width: 100%;
 
-    display: block;
-}
+            height: 330px;
 
+            border: none;
 
-/* =========================================================
-   SONG INFORMATION
-========================================================= */
+            border-radius: 12px;
+        }
 
-.song-info {
 
-    min-width: 0;
+        /* ================================
+           MENU BUTTON
+        ================================= */
 
-    align-self:
-        center;
-}
+        .menu-button {
 
+            position: absolute;
 
-.song-title {
+            right: -52px;
 
-    font-size: 17px;
+            top: 50%;
 
-    line-height: 1.25;
+            transform:
+                translateY(-50%);
 
-    font-weight: 700;
+            width: 42px;
+            height: 42px;
 
-    white-space: nowrap;
+            border:
+                1px solid
+                rgba(255,255,255,.22);
 
-    overflow: hidden;
+            border-radius: 50%;
 
-    text-overflow: ellipsis;
-}
+            background:
+                rgba(20,15,13,.35);
 
+            color: white;
 
-.song-artist {
+            font-size: 17px;
 
-    margin-top: 5px;
+            cursor: pointer;
+        }
 
-    font-size: 13px;
 
-    color:
-        rgba(255,255,255,.70);
+        .menu-button:hover {
 
-    white-space: nowrap;
+            background:
+                rgba(20,15,13,.60);
+        }
 
-    overflow: hidden;
 
-    text-overflow: ellipsis;
-}
+        /* ================================
+           SIGNATURE
+        ================================= */
 
+        .signature {
 
-/* =========================================================
-   CONTROLS
-========================================================= */
+            position: fixed;
 
-.controls {
+            z-index: 100;
 
-    grid-column: 3;
+            left: 50%;
 
-    grid-row: 1 / 3;
+            bottom: 9px;
 
-    display: flex;
+            transform:
+                translateX(-50%);
 
-    align-items: center;
+            font-size: 11px;
 
-    justify-content: flex-end;
+            color:
+                rgba(255,255,255,.80);
 
-    gap: 12px;
-}
+            white-space: nowrap;
 
+            text-shadow:
+                0 2px 10px
+                rgba(0,0,0,.9);
+        }
 
-.control-button {
 
-    width: 24px;
+        /* ================================
+           STATUS
+        ================================= */
 
-    height: 32px;
+        .status {
 
-    padding: 0;
+            position: fixed;
 
-    border: none;
+            left: 50%;
+            top: 72%;
 
-    background: transparent;
+            transform:
+                translate(-50%,-50%);
 
-    color: white;
+            z-index: 100;
 
-    display: flex;
+            padding:
+                8px 16px;
 
-    align-items: center;
+            border-radius: 30px;
 
-    justify-content: center;
+            background:
+                rgba(0,0,0,.65);
 
-    cursor: pointer;
+            backdrop-filter:
+                blur(10px);
 
-    font-size: 14px;
+            font-size: 11px;
 
-    opacity: .85;
+            opacity: 0;
 
-    transition:
-        transform .08s ease,
-        opacity .08s ease;
-}
+            pointer-events: none;
 
+            transition:
+                opacity .15s ease;
+        }
 
-.control-button:hover {
-    opacity: 1;
-}
 
+        .status.show {
+            opacity: 1;
+        }
 
-.control-button:active {
 
-    transform:
-        scale(.75);
-}
+        /* ================================
+           MOBILE
+        ================================= */
 
+        @media(max-width:800px) {
 
-/* =========================================================
-   PLAY BUTTON
-========================================================= */
+            .topbar {
 
-.play-button {
+                top: 14px;
 
-    width: 48px;
+                left: 15px;
+                right: 15px;
+            }
 
-    height: 48px;
 
-    padding: 0;
+            .online {
+                display: none;
+            }
 
-    border: none;
 
-    border-radius: 50%;
+            .top-right {
 
-    background: white;
+                gap: 10px;
+            }
 
-    color: #17151a;
 
-    display: flex;
+            .top-link {
 
-    align-items: center;
+                font-size: 11px;
+            }
 
-    justify-content: center;
 
-    cursor: pointer;
+            .logo {
 
-    font-size: 18px;
+                width: 45vw;
+            }
 
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.2);
 
-    transition:
-        transform .08s ease;
-}
+            .side-button {
 
+                width: 40px;
+                height: 40px;
 
-.play-button:hover {
+                font-size: 25px;
+            }
 
-    transform:
-        scale(1.04);
-}
 
+            #previousSide {
+                left: 8px;
+            }
 
-.play-button:active {
 
-    transform:
-        scale(.86);
-}
+            #nextSide {
+                right: 8px;
+            }
 
 
-/* =========================================================
-   PROGRESS
-========================================================= */
+            .spotify-player {
 
-.progress-area {
+                width:
+                    calc(100vw - 30px);
 
-    grid-column:
-        2;
+                bottom: 35px;
 
-    grid-row:
-        2;
+                border-radius: 22px;
+            }
 
-    display: grid;
 
-    grid-template-columns:
-        30px
-        minmax(0,1fr)
-        35px;
+            .spotify-player iframe {
 
-    align-items: center;
+                height: 152px;
+            }
 
-    gap: 7px;
-}
 
+            .menu-button {
+                display: none;
+            }
 
-.time {
 
-    font-size: 10px;
+            .playlist-panel {
 
-    color:
-        rgba(255,255,255,.72);
-}
+                left: 15px;
 
+                right: 15px;
 
-.progress {
+                width: auto;
 
-    width: 100%;
+                bottom: 205px;
+            }
 
-    height: 4px;
 
-    appearance: none;
+            .signature {
 
-    border: none;
+                font-size: 9px;
+            }
 
-    border-radius: 10px;
+        }
 
-    background:
-        rgba(255,255,255,.30);
-
-    cursor: pointer;
-}
-
-
-.progress::-webkit-slider-thumb {
-
-    appearance: none;
-
-    width: 8px;
-
-    height: 8px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: white;
-}
-
-
-.progress::-moz-range-thumb {
-
-    width: 8px;
-
-    height: 8px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: white;
-}
-
-
-/* =========================================================
-   MENU BUTTON
-========================================================= */
-
-.menu-button {
-
-    position: absolute;
-
-    right: -52px;
-
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-
-    width: 42px;
-
-    height: 42px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.22);
-
-    border-radius: 50%;
-
-    background:
-        rgba(20,15,13,.30);
-
-    color: white;
-
-    font-size: 17px;
-
-    cursor: pointer;
-}
-
-
-.menu-button:hover {
-
-    background:
-        rgba(20,15,13,.55);
-}
-
-
-/* =========================================================
-   YOUTUBE PLAYLIST PANEL
-========================================================= */
-
-.playlist-panel {
-
-    position: fixed;
-
-    z-index: 45;
-
-    right: 35px;
-
-    bottom: 165px;
-
-    width: 350px;
-
-    max-height: 390px;
-
-    padding: 20px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(18,14,12,.94);
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    backdrop-filter:
-        blur(18px);
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.6);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform:
-        translateY(12px);
-
-    transition:
-        opacity .15s ease,
-        transform .15s ease,
-        visibility .15s ease;
-}
-
-
-.playlist-panel.open {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform:
-        translateY(0);
-}
-
-
-.playlist-title {
-
-    font-size: 12px;
-
-    letter-spacing:
-        .14em;
-
-    color:
-        rgba(255,255,255,.55);
-
-    margin-bottom: 14px;
-}
-
-
-.playlist-info {
-
-    font-size: 12px;
-
-    line-height: 1.7;
-
-    color:
-        rgba(255,255,255,.65);
-}
-
-
-/* =========================================================
-   SPOTIFY PANEL
-========================================================= */
-
-.spotify-panel {
-
-    position: fixed;
-
-    z-index: 46;
-
-    right: 35px;
-
-    bottom: 165px;
-
-    width: 350px;
-
-    height: 390px;
-
-    padding: 18px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(18,14,12,.96);
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    backdrop-filter:
-        blur(18px);
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.6);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform:
-        translateY(12px);
-
-    transition:
-        opacity .15s ease,
-        transform .15s ease,
-        visibility .15s ease;
-}
-
-
-.spotify-panel.open {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform:
-        translateY(0);
-}
-
-
-.spotify-title {
-
-    font-size: 12px;
-
-    letter-spacing:
-        .14em;
-
-    color:
-        rgba(255,255,255,.55);
-
-    margin-bottom: 12px;
-}
-
-
-.spotify-panel iframe {
-
-    display: block;
-
-    width: 100%;
-
-    height: 340px;
-
-    border: none;
-
-    border-radius: 12px;
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-.status {
-
-    position: fixed;
-
-    left: 50%;
-
-    top: 70%;
-
-    transform:
-        translate(-50%,-50%);
-
-    z-index: 100;
-
-    padding:
-        8px 16px;
-
-    border-radius: 30px;
-
-    background:
-        rgba(0,0,0,.65);
-
-    backdrop-filter:
-        blur(10px);
-
-    font-size: 11px;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition:
-        opacity .12s ease;
-}
-
-
-.status.show {
-    opacity: 1;
-}
-
-
-/* =========================================================
-   HIDDEN YOUTUBE PLAYER
-========================================================= */
-
-#youtube-player {
-
-    position: fixed;
-
-    left: -1000px;
-
-    top: -1000px;
-
-    width: 320px;
-
-    height: 180px;
-
-    opacity: 0;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   SIGNATURE
-========================================================= */
-
-.signature {
-
-    position: fixed;
-
-    z-index: 100;
-
-    left: 50%;
-
-    bottom: 9px;
-
-    transform:
-        translateX(-50%);
-
-    font-size: 11px;
-
-    color:
-        rgba(255,255,255,.78);
-
-    white-space: nowrap;
-
-    text-shadow:
-        0 2px 10px
-        rgba(0,0,0,.9);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:800px) {
-
-
-    .topbar {
-
-        top: 14px;
-
-        left: 15px;
-
-        right: 15px;
-    }
-
-
-    .online {
-        display: none;
-    }
-
-
-    .top-right {
-        gap: 10px;
-    }
-
-
-    .top-link {
-        font-size: 11px;
-    }
-
-
-    .logo {
-
-        width:
-            45vw;
-    }
-
-
-    .side-button {
-
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 25px;
-    }
-
-
-    #previousSide {
-        left: 8px;
-    }
-
-
-    #nextSide {
-        right: 8px;
-    }
-
-
-    .player {
-
-        width:
-            calc(100vw - 30px);
-
-        height: 86px;
-
-        bottom: 34px;
-
-        padding:
-            9px 11px;
-
-        grid-template-columns:
-            52px
-            minmax(0,1fr)
-            105px;
-
-        column-gap: 8px;
-    }
-
-
-    .cover {
-
-        width: 52px;
-
-        height: 52px;
-    }
-
-
-    .song-title {
-        font-size: 13px;
-    }
-
-
-    .song-artist {
-        font-size: 10px;
-    }
-
-
-    .controls {
-        gap: 5px;
-    }
-
-
-    .control-button {
-
-        width: 19px;
-
-        font-size: 12px;
-    }
-
-
-    .play-button {
-
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 15px;
-    }
-
-
-    .menu-button {
-        display: none;
-    }
-
-
-    .playlist-panel,
-    .spotify-panel {
-
-        left: 15px;
-
-        right: 15px;
-
-        width: auto;
-
-        bottom: 130px;
-    }
-
-
-    .signature {
-        font-size: 9px;
-    }
-
-}
-
-</style>
+    </style>
 
 </head>
 
@@ -1188,1371 +708,443 @@ body {
 <body>
 
 
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
 
-<div class="background"></div>
+    <div class="background"></div>
 
-<div class="overlay"></div>
-
-
-<!-- =====================================================
-     TOP BAR
-===================================================== -->
-
-<div class="topbar">
+    <div class="overlay"></div>
 
 
-    <div id="clock">
-        11:13 am
-    </div>
+    <!-- =========================================
+         TOP BAR
+    ========================================== -->
 
-
-    <div class="online">
-
-        <span class="online-dot"></span>
-
-        <span>
-            listening now
-        </span>
-
-    </div>
-
-
-    <div class="top-right">
-
+    <div class="topbar">
 
         <div
-            class="top-link"
-            id="spotifyButton">
+            class="clock"
+            id="clock">
+            11:13 am
+        </div>
 
-            <span class="icon-circle">
-                S
+
+        <div class="online">
+
+            <span class="online-dot"></span>
+
+            <span>
+                listening now
             </span>
-
-            Spotify
 
         </div>
 
 
-        <div
-            class="top-link"
-            id="ytMusicButton">
+        <div class="top-right">
 
-            <span class="icon-circle">
-                ▶
-            </span>
 
-            YT Music
+            <div
+                class="top-link"
+                id="spotifyTopButton">
+
+                <span class="icon-circle">
+                    S
+                </span>
+
+                Spotify
+
+            </div>
+
+
+            <div
+                class="top-link"
+                id="spotifyOpenButton">
+
+                <span class="icon-circle">
+                    ▶
+                </span>
+
+                Playlist
+
+            </div>
+
 
         </div>
 
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     CENTER LOGO
-===================================================== -->
-
-<div class="logo">
-
-    <img
-        src="assets/atal-logo.png"
-        alt="अटल जिम">
-
-</div>
-
-
-<!-- =====================================================
-     SIDE BUTTONS
-===================================================== -->
-
-<button
-    class="side-button"
-    id="previousSide"
-    aria-label="Previous">
-
-    ‹
-
-</button>
-
-
-<button
-    class="side-button"
-    id="nextSide"
-    aria-label="Next">
-
-    ›
-
-</button>
-
-
-<!-- =====================================================
-     YOUTUBE PLAYLIST PANEL
-===================================================== -->
-
-<div
-    class="playlist-panel"
-    id="playlistPanel">
-
-
-    <div class="playlist-title">
-
-        SIDHU MOOSEWALA PLAYLIST
-
     </div>
 
 
-    <div class="playlist-info">
+    <!-- =========================================
+         ATAL GYM LOGO
+    ========================================== -->
 
-        You are listening to the
-        Sidhu Moosewala playlist.
-
-        <br><br>
-
-        Previous and Next use the
-        actual YouTube playlist.
-
-        <br><br>
-
-        Click Play to start the music.
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     SPOTIFY PANEL
-===================================================== -->
-
-<div
-    class="spotify-panel"
-    id="spotifyPanel">
-
-
-    <div class="spotify-title">
-
-        SIDHU MOOSEWALA — SPOTIFY
-
-    </div>
-
-
-    <iframe
-
-        src="https://open.spotify.com/embed/playlist/5W4HW18UxqA2d8AVLsbbOm?utm_source=generator&theme=0"
-
-        width="100%"
-
-        height="340"
-
-        frameborder="0"
-
-        allowfullscreen=""
-
-        allow="
-            autoplay;
-            clipboard-write;
-            encrypted-media;
-            fullscreen;
-            picture-in-picture
-        "
-
-        loading="lazy">
-
-    </iframe>
-
-
-</div>
-
-
-<!-- =====================================================
-     MUSIC PLAYER
-===================================================== -->
-
-<div class="player">
-
-
-    <!-- COVER -->
-
-    <div class="cover">
+    <div class="logo">
 
         <img
-            id="coverImage"
-            src="assets/gym-sidhu.png"
-            alt="Sidhu Moosewala">
+            src="assets/atal-logo.png"
+            alt="अटल जिम">
 
     </div>
 
 
-    <!-- SONG INFO -->
-
-    <div class="song-info">
-
-
-        <div
-            class="song-title"
-            id="songTitle">
-
-            Sidhu Moosewala
-
-        </div>
-
-
-        <div
-            class="song-artist"
-            id="songArtist">
-
-            Sidhu Moosewala
-
-        </div>
-
-
-    </div>
-
-
-    <!-- PROGRESS -->
-
-    <div class="progress-area">
-
-
-        <span
-            class="time"
-            id="currentTime">
-
-            0:00
-
-        </span>
-
-
-        <input
-
-            class="progress"
-
-            id="progress"
-
-            type="range"
-
-            min="0"
-
-            max="100"
-
-            value="0"
-
-        >
-
-
-        <span
-            class="time"
-            id="duration">
-
-            0:00
-
-        </span>
-
-
-    </div>
-
-
-    <!-- CONTROLS -->
-
-    <div class="controls">
-
-
-        <button
-            class="control-button"
-            id="previousButton"
-            aria-label="Previous song">
-
-            |◀
-
-        </button>
-
-
-        <button
-            class="play-button"
-            id="playButton"
-            aria-label="Play">
-
-            ▶
-
-        </button>
-
-
-        <button
-            class="control-button"
-            id="nextButton"
-            aria-label="Next song">
-
-            ▶|
-
-        </button>
-
-
-    </div>
-
-
-    <!-- MENU -->
+    <!-- =========================================
+         SIDE ARROWS
+    ========================================== -->
 
     <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Playlist">
+        class="side-button"
+        id="previousSide"
+        aria-label="Previous">
 
-        ☰
+        ‹
 
     </button>
 
 
-</div>
+    <button
+        class="side-button"
+        id="nextSide"
+        aria-label="Next">
+
+        ›
+
+    </button>
 
 
-<!-- =====================================================
-     STATUS
-===================================================== -->
+    <!-- =========================================
+         SPOTIFY PLAYER
+    ========================================== -->
 
-<div
-    class="status"
-    id="status">
-</div>
+    <div class="spotify-player">
 
-
-<!-- =====================================================
-     SIGNATURE
-===================================================== -->
-
-<div class="signature">
-
-    Made with 💖 from Gaurav
-
-</div>
+        <div class="player-header">
+            SIDHU MOOSEWALA
+        </div>
 
 
-<!-- =====================================================
-     HIDDEN YOUTUBE PLAYER
-===================================================== -->
-
-<div id="youtube-player"></div>
-
-
-<script>
-
-/* =========================================================
-   PLAYLIST IDS
-========================================================= */
-
-const YOUTUBE_PLAYLIST_ID =
-    "PL61b1x9YzrKU-5RwcdWd3ygy2-4Aiznjg";
-
-const SPOTIFY_PLAYLIST_ID =
-    "5W4HW18UxqA2d8AVLsbbOm";
+        <iframe
+            src="https://open.spotify.com/embed/playlist/5W4HW18UxqA2d8AVLsbbOm?utm_source=generator&theme=0"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allowfullscreen=""
+            allow="
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                fullscreen;
+                picture-in-picture
+            "
+            loading="eager">
+        </iframe>
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open playlist">
 
-let player = null;
+            ☰
 
-let playerReady = false;
+        </button>
 
-let isPlaying = false;
-
-let statusTimer = null;
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const playButton =
-    document.getElementById(
-        "playButton"
-    );
-
-const previousButton =
-    document.getElementById(
-        "previousButton"
-    );
-
-const nextButton =
-    document.getElementById(
-        "nextButton"
-    );
-
-const previousSide =
-    document.getElementById(
-        "previousSide"
-    );
-
-const nextSide =
-    document.getElementById(
-        "nextSide"
-    );
-
-const songTitle =
-    document.getElementById(
-        "songTitle"
-    );
-
-const songArtist =
-    document.getElementById(
-        "songArtist"
-    );
-
-const coverImage =
-    document.getElementById(
-        "coverImage"
-    );
-
-const progress =
-    document.getElementById(
-        "progress"
-    );
-
-const currentTime =
-    document.getElementById(
-        "currentTime"
-    );
-
-const duration =
-    document.getElementById(
-        "duration"
-    );
-
-const status =
-    document.getElementById(
-        "status"
-    );
-
-const playlistPanel =
-    document.getElementById(
-        "playlistPanel"
-    );
-
-const spotifyPanel =
-    document.getElementById(
-        "spotifyPanel"
-    );
+    </div>
 
 
-/* =========================================================
-   CLOCK
-========================================================= */
+    <!-- =========================================
+         PLAYLIST PANEL
+    ========================================== -->
 
-function updateClock() {
+    <div
+        class="playlist-panel"
+        id="playlistPanel">
 
-    const now =
-        new Date();
+        <div class="playlist-title">
 
-    let hours =
-        now.getHours();
+            SIDHU MOOSEWALA PLAYLIST
 
-    const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(
-            2,
-            "0"
-        );
-
-    const period =
-        hours >= 12
-            ? "pm"
-            : "am";
-
-    hours =
-        hours % 12 || 12;
-
-    document.getElementById(
-        "clock"
-    ).textContent =
-        `${hours}:${minutes} ${period}`;
-
-}
-
-updateClock();
-
-setInterval(
-    updateClock,
-    1000
-);
+        </div>
 
 
-/* =========================================================
-   STATUS
-========================================================= */
+        <iframe
+            src="https://open.spotify.com/embed/playlist/5W4HW18UxqA2d8AVLsbbOm?utm_source=generator&theme=0"
+            width="100%"
+            height="330"
+            frameborder="0"
+            allowfullscreen=""
+            allow="
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                fullscreen;
+                picture-in-picture
+            "
+            loading="lazy">
+        </iframe>
 
-function showStatus(message) {
+    </div>
 
-    status.textContent =
-        message;
 
-    status.classList.add(
-        "show"
-    );
+    <!-- =========================================
+         STATUS
+    ========================================== -->
 
-    clearTimeout(
-        statusTimer
-    );
+    <div
+        class="status"
+        id="status">
+    </div>
 
-    statusTimer =
-        setTimeout(
-            function() {
 
-                status.classList.remove(
-                    "show"
+    <!-- =========================================
+         SIGNATURE
+    ========================================== -->
+
+    <div class="signature">
+
+        Made with 💖 from Gaurav
+
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+
+        /* =========================================
+           CLOCK
+        ========================================== */
+
+        function updateClock() {
+
+            const now = new Date();
+
+            let hours =
+                now.getHours();
+
+            const minutes =
+                String(
+                    now.getMinutes()
+                ).padStart(
+                    2,
+                    "0"
                 );
 
-            },
-            1600
+            const period =
+                hours >= 12
+                    ? "pm"
+                    : "am";
+
+            hours =
+                hours % 12 || 12;
+
+            document.getElementById(
+                "clock"
+            ).textContent =
+                `${hours}:${minutes} ${period}`;
+
+        }
+
+
+        updateClock();
+
+
+        setInterval(
+            updateClock,
+            1000
         );
 
-}
+
+        /* =========================================
+           ELEMENTS
+        ========================================== */
+
+        const playlistPanel =
+            document.getElementById(
+                "playlistPanel"
+            );
 
 
-/* =========================================================
-   YOUTUBE IFRAME API
-========================================================= */
-
-window.onYouTubeIframeAPIReady =
-function() {
+        const menuButton =
+            document.getElementById(
+                "menuButton"
+            );
 
 
-    player =
-        new YT.Player(
-            "youtube-player",
-            {
-
-                width: "320",
-
-                height: "180",
-
-                playerVars: {
-
-                    autoplay: 0,
-
-                    controls: 0,
-
-                    playsinline: 1,
-
-                    rel: 0,
-
-                    modestbranding: 1,
-
-                    listType:
-                        "playlist",
-
-                    list:
-                        YOUTUBE_PLAYLIST_ID,
-
-                    loop: 1,
-
-                    enablejsapi: 1,
-
-                    origin:
-                        window.location.origin
-
-                },
+        const spotifyTopButton =
+            document.getElementById(
+                "spotifyTopButton"
+            );
 
 
-                events: {
+        const spotifyOpenButton =
+            document.getElementById(
+                "spotifyOpenButton"
+            );
 
-                    onReady:
-                        onPlayerReady,
 
-                    onStateChange:
-                        onPlayerStateChange,
+        const previousSide =
+            document.getElementById(
+                "previousSide"
+            );
 
-                    onError:
-                        onPlayerError
+
+        const nextSide =
+            document.getElementById(
+                "nextSide"
+            );
+
+
+        const status =
+            document.getElementById(
+                "status"
+            );
+
+
+        /* =========================================
+           STATUS MESSAGE
+        ========================================== */
+
+        let statusTimer;
+
+
+        function showStatus(message) {
+
+            status.textContent =
+                message;
+
+            status.classList.add(
+                "show"
+            );
+
+            clearTimeout(
+                statusTimer
+            );
+
+            statusTimer =
+                setTimeout(
+                    () => {
+
+                        status.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    1600
+                );
+
+        }
+
+
+        /* =========================================
+           OPEN PLAYLIST
+        ========================================== */
+
+        function openPlaylist() {
+
+            playlistPanel.classList.toggle(
+                "open"
+            );
+
+        }
+
+
+        menuButton.addEventListener(
+            "click",
+            openPlaylist
+        );
+
+
+        spotifyOpenButton.addEventListener(
+            "click",
+            openPlaylist
+        );
+
+
+        /* =========================================
+           SPOTIFY TOP BUTTON
+        ========================================== */
+
+        spotifyTopButton.addEventListener(
+            "click",
+            function() {
+
+                window.open(
+                    "https://open.spotify.com/playlist/5W4HW18UxqA2d8AVLsbbOm",
+                    "_blank"
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           SIDE BUTTONS
+           
+           IMPORTANT:
+           Spotify's iframe doesn't expose
+           previous/next controls to ordinary
+           static HTML JavaScript.
+           
+           Therefore these buttons open the
+           Spotify playlist where Spotify itself
+           handles track navigation.
+        ========================================== */
+
+        previousSide.addEventListener(
+            "click",
+            function() {
+
+                showStatus(
+                    "Use Spotify controls for previous"
+                );
+
+                openPlaylist();
+
+            }
+        );
+
+
+        nextSide.addEventListener(
+            "click",
+            function() {
+
+                showStatus(
+                    "Use Spotify controls for next"
+                );
+
+                openPlaylist();
+
+            }
+        );
+
+
+        /* =========================================
+           ESC CLOSE
+        ========================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    playlistPanel.classList.remove(
+                        "open"
+                    );
 
                 }
 
             }
         );
 
-};
 
-
-/* =========================================================
-   YOUTUBE READY
-========================================================= */
-
-function onPlayerReady() {
-
-    playerReady = true;
-
-
-    try {
-
-        player.cuePlaylist({
-
-            listType:
-                "playlist",
-
-            list:
-                YOUTUBE_PLAYLIST_ID,
-
-            index: 0
-
-        });
-
-    }
-
-    catch(error) {
-
-        console.error(error);
-
-    }
-
-
-    showStatus(
-        "Playlist ready"
-    );
-
-}
-
-
-/* =========================================================
-   STATE CHANGE
-========================================================= */
-
-function onPlayerStateChange(event) {
-
-
-    if (
-        event.data ===
-        YT.PlayerState.PLAYING
-    ) {
-
-        isPlaying = true;
-
-        playButton.textContent =
-            "Ⅱ";
-
-        updateSongInfo();
-
-    }
-
-
-    else if (
-        event.data ===
-        YT.PlayerState.PAUSED
-    ) {
-
-        isPlaying = false;
-
-        playButton.textContent =
-            "▶";
-
-    }
-
-
-    else if (
-        event.data ===
-        YT.PlayerState.ENDED
-    ) {
-
-        isPlaying = false;
-
-        playButton.textContent =
-            "▶";
-
-    }
-
-
-    else if (
-        event.data ===
-        YT.PlayerState.CUED
-    ) {
-
-        updateSongInfo();
-
-    }
-
-}
-
-
-/* =========================================================
-   YOUTUBE ERROR
-========================================================= */
-
-function onPlayerError(event) {
-
-    console.error(
-        "YouTube error:",
-        event.data
-    );
-
-
-    let message =
-        "YouTube playback error";
-
-
-    if (event.data === 2) {
-
-        message =
-            "Invalid YouTube request";
-
-    }
-
-
-    else if (event.data === 5) {
-
-        message =
-            "HTML5 player error";
-
-    }
-
-
-    else if (event.data === 100) {
-
-        message =
-            "Video unavailable";
-
-    }
-
-
-    else if (
-        event.data === 101 ||
-        event.data === 150
-    ) {
-
-        message =
-            "This video cannot be embedded";
-
-    }
-
-
-    else if (event.data === 153) {
-
-        message =
-            "YouTube rejected this player";
-
-    }
-
-
-    showStatus(
-        message
-    );
-
-}
-
-
-/* =========================================================
-   PLAY / PAUSE
-========================================================= */
-
-playButton.addEventListener(
-    "click",
-    function() {
-
-
-        if (
-            !playerReady ||
-            !player
-        ) {
-
-            showStatus(
-                "YouTube is loading..."
-            );
-
-            return;
-
-        }
-
-
-        if (isPlaying) {
-
-
-            isPlaying = false;
-
-            playButton.textContent =
-                "▶";
-
-            player.pauseVideo();
-
-
-        }
-
-        else {
-
-
-            isPlaying = true;
-
-            playButton.textContent =
-                "Ⅱ";
-
-            player.playVideo();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   PREVIOUS
-========================================================= */
-
-function previousSong() {
-
-
-    if (
-        !playerReady ||
-        !player
-    ) {
-
-        showStatus(
-            "YouTube is loading..."
-        );
-
-        return;
-
-    }
-
-
-    previousButton.style.transform =
-        "scale(.75)";
-
-
-    setTimeout(
-        function() {
-
-            previousButton.style.transform =
-                "";
-
-        },
-        80
-    );
-
-
-    try {
-
-        player.previousVideo();
-
-    }
-
-    catch(error) {
-
-        console.error(
-            "Previous error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   NEXT
-========================================================= */
-
-function nextSong() {
-
-
-    if (
-        !playerReady ||
-        !player
-    ) {
-
-        showStatus(
-            "YouTube is loading..."
-        );
-
-        return;
-
-    }
-
-
-    nextButton.style.transform =
-        "scale(.75)";
-
-
-    setTimeout(
-        function() {
-
-            nextButton.style.transform =
-                "";
-
-        },
-        80
-    );
-
-
-    try {
-
-        player.nextVideo();
-
-    }
-
-    catch(error) {
-
-        console.error(
-            "Next error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   BUTTON EVENTS
-========================================================= */
-
-previousButton.addEventListener(
-    "click",
-    previousSong
-);
-
-
-nextButton.addEventListener(
-    "click",
-    nextSong
-);
-
-
-previousSide.addEventListener(
-    "click",
-    previousSong
-);
-
-
-nextSide.addEventListener(
-    "click",
-    nextSong
-);
-
-
-/* =========================================================
-   SONG INFORMATION
-========================================================= */
-
-function updateSongInfo() {
-
-
-    if (
-        !playerReady ||
-        !player
-    )
-        return;
-
-
-    try {
-
-
-        const data =
-            player.getVideoData();
-
-
-        if (
-            data &&
-            data.title
-        ) {
-
-            songTitle.textContent =
-                data.title;
-
-        }
-
-
-        if (
-            data &&
-            data.author
-        ) {
-
-            songArtist.textContent =
-                data.author;
-
-        }
-
-
-        if (
-            data &&
-            data.video_id
-        ) {
-
-            coverImage.src =
-                "https://i.ytimg.com/vi/" +
-                data.video_id +
-                "/hqdefault.jpg";
-
-        }
-
-
-    }
-
-    catch(error) {
-
-        console.log(
-            "Waiting for metadata..."
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function updateProgress() {
-
-
-    if (
-        !playerReady ||
-        !player
-    )
-        return;
-
-
-    try {
-
-
-        const total =
-            player.getDuration();
-
-
-        const current =
-            player.getCurrentTime();
-
-
-        if (
-            total &&
-            total > 0
-        ) {
-
-
-            progress.value =
-                (
-                    current /
-                    total
-                ) * 100;
-
-
-            currentTime.textContent =
-                formatTime(
-                    current
-                );
-
-
-            duration.textContent =
-                formatTime(
-                    total
-                );
-
-        }
-
-    }
-
-    catch(error) {
-
-        // Player isn't ready.
-
-    }
-
-}
-
-
-setInterval(
-    updateProgress,
-    400
-);
-
-
-/* =========================================================
-   SEEK
-========================================================= */
-
-progress.addEventListener(
-    "input",
-    function() {
-
-
-        if (
-            !playerReady ||
-            !player
-        )
-            return;
-
-
-        try {
-
-
-            const total =
-                player.getDuration();
-
-
-            if (!total)
-                return;
-
-
-            const target =
-                (
-                    Number(
-                        progress.value
-                    ) / 100
-                ) * total;
-
-
-            player.seekTo(
-                target,
-                true
-            );
-
-
-        }
-
-        catch(error) {
-
-            console.error(
-                error
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   FORMAT TIME
-========================================================= */
-
-function formatTime(seconds) {
-
-    seconds =
-        Math.floor(
-            Number(seconds) || 0
-        );
-
-
-    const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-
-    const remaining =
-        String(
-            seconds % 60
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    return (
-        minutes +
-        ":" +
-        remaining
-    );
-
-}
-
-
-/* =========================================================
-   YOUTUBE PLAYLIST MENU
-========================================================= */
-
-document
-    .getElementById(
-        "menuButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-
-            playlistPanel.classList.toggle(
-                "open"
-            );
-
-
-            /*
-             * Close Spotify when YouTube
-             * playlist is opened.
-             */
-
-            spotifyPanel.classList.remove(
-                "open"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   SPOTIFY BUTTON
-========================================================= */
-
-document
-    .getElementById(
-        "spotifyButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-
-            spotifyPanel.classList.toggle(
-                "open"
-            );
-
-
-            /*
-             * Close YouTube playlist
-             * panel.
-             */
-
-            playlistPanel.classList.remove(
-                "open"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   YOUTUBE MUSIC BUTTON
-========================================================= */
-
-document
-    .getElementById(
-        "ytMusicButton"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-
-            window.open(
-
-                "https://music.youtube.com/playlist?list=" +
-                YOUTUBE_PLAYLIST_ID,
-
-                "_blank"
-
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   KEYBOARD CONTROLS
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-
-        if (
-            event.target.tagName ===
-            "INPUT"
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            event.code ===
-            "Space"
-        ) {
-
-            event.preventDefault();
-
-            playButton.click();
-
-        }
-
-
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            previousSong();
-
-        }
-
-
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
-            nextSong();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CLOSE PANELS WITH ESC
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-
-        if (
-            event.key ===
-            "Escape"
-        ) {
-
-            playlistPanel.classList.remove(
-                "open"
-            );
-
-            spotifyPanel.classList.remove(
-                "open"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   LOAD YOUTUBE API
-========================================================= */
-
-const youtubeScript =
-    document.createElement(
-        "script"
-    );
-
-
-youtubeScript.src =
-    "https://www.youtube.com/iframe_api";
-
-
-youtubeScript.async = true;
-
-
-document.head.appendChild(
-    youtubeScript
-);
-
-</script>
-
+    </script>
 
 </body>
 
